@@ -1,6 +1,6 @@
 ﻿namespace ShapeShifter.View
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.panelCanvas = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -39,6 +39,7 @@
             this.toolStripFigures = new System.Windows.Forms.ToolStripDropDownButton();
             this.прямоугольникToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.эллипсToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripButtonSaveFigure = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.panelCanvas.SuspendLayout();
             this.toolStripTools.SuspendLayout();
@@ -51,11 +52,11 @@
             this.Canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Canvas.Location = new System.Drawing.Point(0, 0);
             this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(1336, 666);
+            this.Canvas.Size = new System.Drawing.Size(1427, 684);
             this.Canvas.TabIndex = 0;
             this.Canvas.TabStop = false;
-            this.Canvas.Click += new System.EventHandler(this.Canvas_Click);
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
+            this.Canvas.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseDown);
             this.Canvas.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Canvas_MouseMove);
             this.Canvas.Resize += new System.EventHandler(this.Canvas_Resize);
             // 
@@ -67,14 +68,14 @@
             this.panelCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCanvas.Location = new System.Drawing.Point(0, 0);
             this.panelCanvas.Name = "panelCanvas";
-            this.panelCanvas.Size = new System.Drawing.Size(1336, 666);
+            this.panelCanvas.Size = new System.Drawing.Size(1427, 684);
             this.panelCanvas.TabIndex = 1;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 644);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 662);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1336, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(1427, 22);
             this.statusStrip1.TabIndex = 0;
             // 
             // toolStripTools
@@ -83,10 +84,11 @@
             this.toolStripSave,
             this.toolStripSeparator1,
             this.toolStripMouseDraw,
-            this.toolStripFigures});
+            this.toolStripFigures,
+            this.toolStripButtonSaveFigure});
             this.toolStripTools.Location = new System.Drawing.Point(0, 0);
             this.toolStripTools.Name = "toolStripTools";
-            this.toolStripTools.Size = new System.Drawing.Size(1336, 25);
+            this.toolStripTools.Size = new System.Drawing.Size(1427, 25);
             this.toolStripTools.TabIndex = 2;
             this.toolStripTools.Text = "toolStrip1";
             // 
@@ -130,24 +132,34 @@
             // прямоугольникToolStripMenuItem
             // 
             this.прямоугольникToolStripMenuItem.Name = "прямоугольникToolStripMenuItem";
-            this.прямоугольникToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.прямоугольникToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.прямоугольникToolStripMenuItem.Text = "Прямоугольник";
             this.прямоугольникToolStripMenuItem.Click += new System.EventHandler(this.прямоугольникToolStripMenuItem_Click);
             // 
             // эллипсToolStripMenuItem
             // 
             this.эллипсToolStripMenuItem.Name = "эллипсToolStripMenuItem";
-            this.эллипсToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.эллипсToolStripMenuItem.Size = new System.Drawing.Size(163, 22);
             this.эллипсToolStripMenuItem.Text = "Эллипс";
             // 
-            // Form1
+            // toolStripButtonSaveFigure
+            // 
+            this.toolStripButtonSaveFigure.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonSaveFigure.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonSaveFigure.Image")));
+            this.toolStripButtonSaveFigure.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonSaveFigure.Name = "toolStripButtonSaveFigure";
+            this.toolStripButtonSaveFigure.Size = new System.Drawing.Size(113, 22);
+            this.toolStripButtonSaveFigure.Text = "Сохранить фигуру";
+            this.toolStripButtonSaveFigure.Click += new System.EventHandler(this.toolStripButtonSaveFigure_Click);
+            // 
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1336, 666);
+            this.ClientSize = new System.Drawing.Size(1427, 684);
             this.Controls.Add(this.toolStripTools);
             this.Controls.Add(this.panelCanvas);
-            this.Name = "Form1";
+            this.Name = "MainForm";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).EndInit();
             this.panelCanvas.ResumeLayout(false);
@@ -171,6 +183,7 @@
         private System.Windows.Forms.ToolStripDropDownButton toolStripFigures;
         private System.Windows.Forms.ToolStripMenuItem прямоугольникToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem эллипсToolStripMenuItem;
+        private System.Windows.Forms.ToolStripButton toolStripButtonSaveFigure;
     }
 }
 
