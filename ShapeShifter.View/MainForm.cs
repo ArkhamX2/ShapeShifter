@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
@@ -15,15 +16,33 @@ namespace ShapeShifter.View
         bool drawable = false;
         private Point PreviousPoint = MousePosition;
         private Point MouseDownLocation;
-        private bool _doMouseDraw;
+
         private Shape _selectedFigure;
+        private Color _selectedColor;
+
+
+        private bool _doMouseDraw;
         private bool _doDrawFigures;
+
         private Bitmap _currentBitmap;
+        private List<Shape> _drawnShapes;
 
         public Shape SelectedFigure
         {
             get { return _selectedFigure; }
             set {_selectedFigure = value; }
+        }
+
+        public Color SelectedColor
+        {
+            get { return _selectedColor; }
+            set { _selectedColor = value; }
+        }
+
+        public List<Shape> Drawn
+        {
+            get { return _drawnShapes; }
+            set { _drawnShapes = value; }
         }
 
         /// <summary>
@@ -34,6 +53,8 @@ namespace ShapeShifter.View
             InitializeComponent();
             Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height);
             SelectedFigure= _shapes[3];
+            SelectedColor = Color.Red;
+            Drawn = new List<Shape>();  
             _currentBitmap = new Bitmap(Canvas.Width, Canvas.Height);
         }
 
@@ -68,17 +89,119 @@ namespace ShapeShifter.View
             _doMouseDraw = !_doMouseDraw;
             _doDrawFigures = false;
             _selectedFigure = null;
+
+
         }
 
         private void toolStripFigures_Click(object sender, EventArgs e)
         {
             _doMouseDraw = false;
-            _doDrawFigures = !_doDrawFigures;
+            _doDrawFigures = true;
         }
+
+        #region FigureChoose
 
         private void прямоугольникToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SelectedFigure = _shapes[3];
+        }
+        private void эллипсToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedFigure = _shapes[2];
+        }
+        private void треугольникToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedFigure = _shapes[6];
+        }
+        private void квадратToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedFigure= _shapes[4];
+        }
+
+        private void кругToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedFigure= _shapes[1];
+        }
+
+        private void стрелочкаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedFigure= _shapes[0];
+        }
+
+        private void трапецияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedFigure= _shapes[5];
+        }
+
+        #endregion
+
+        #region ColorChoose
+        private void красныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.Red;
+        }
+
+        private void оранжевыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.Orange;
+        }
+
+        private void жёлтыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.Yellow;
+        }
+
+        private void зелёныйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.Green;
+        }
+
+        private void голубойToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.LightBlue;
+        }
+
+        private void синийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.Blue;
+        }
+
+        private void фиолетовыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.Purple;
+        }
+        private void белыйToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.Transparent;
+        }
+        #endregion
+
+        private void toolStripButtonSaveFigureToList_Click(object sender, EventArgs e)
+        {
+            Graphics g = Graphics.FromImage(Canvas.Image);
+            g.SmoothingMode= SmoothingMode.HighQuality;
+            if (SelectedFigure != null)
+            {
+                using (Pen pen = new Pen(SelectedFigure.OutlineColor, SelectedFigure.OutlineWidth))
+                using (SolidBrush brush = new SolidBrush(SelectedFigure.Color))
+                {
+                
+                    g.FillPath(brush, SelectedFigure.GraphicsPath);
+                    g.DrawPath(pen, SelectedFigure.GraphicsPath);
+                }
+            }
+            
+                
+
+            Canvas.Invalidate();
+        }
+        private void toolStripButtonClear_Click(object sender, EventArgs e)
+        {
+            Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height);
+        }
+        private void toolStripSave_Click(object sender, EventArgs e)
+        {
+            Canvas.Image.Save(@"D:\Prog\ShapeShifter\ShapeShifter.View\Images\MyPainting.png", ImageFormat.Png);
         }
         #endregion
 
@@ -99,7 +222,11 @@ namespace ShapeShifter.View
             {
                 if (e.Button == MouseButtons.Left )
                 {
-                    SelectedFigure = RandomShape(cursorPosition, new SizeF(200, 300));
+
+                    SelectedFigure.Location = cursorPosition;
+                    SelectedFigure.Size = new SizeF(200, 300);
+                    SelectedFigure.Color = SelectedColor;
+                    SelectedFigure.OutlineColor = Color.Black;  
 
                 }
                 if (e.Button == MouseButtons.Right)
@@ -171,14 +298,6 @@ namespace ShapeShifter.View
             }
 
         }
-        private void toolStripButtonSaveFigure_Click(object sender, EventArgs e)
-        {
-            ////"D:\\Prog\\ShapeShifter\\ShapeShifter.View\\Images\\test.jpg"
-
-            //Canvas.Image.Save(@"D:\Prog\ShapeShifter\ShapeShifter.View\Images\123.jpeg", ImageFormat.Png);
-
-            //pictureBox1.Image = new Bitmap(@"D:\Prog\ShapeShifter\ShapeShifter.View\Images\test.png");
-        }
 
         #endregion
 
@@ -242,6 +361,5 @@ namespace ShapeShifter.View
             return shape;
         }
 
-       
     }
 }
