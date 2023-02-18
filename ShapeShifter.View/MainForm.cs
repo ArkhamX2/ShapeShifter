@@ -13,12 +13,13 @@ namespace ShapeShifter.View
     /// </summary>
     public partial class MainForm : Form
     {
-        bool drawable = false;
         private Point PreviousPoint = MousePosition;
         private Point MouseDownLocation;
 
         private Shape _selectedFigure;
         private Color _selectedColor;
+        private Pen _selectedPen;
+        private int _selectedPenWidth;
 
 
         private bool _doMouseDraw;
@@ -27,10 +28,16 @@ namespace ShapeShifter.View
         private Bitmap _currentBitmap;
         private List<Shape> _drawnShapes;
 
-        public Shape SelectedFigure
+        public Pen SelectedPen
         {
-            get { return _selectedFigure; }
-            set {_selectedFigure = value; }
+            get { return _selectedPen; }
+            set { _selectedPen = value; }
+        }
+        
+        public int SelectedPenWidth
+        {
+            get { return _selectedPenWidth; }
+            set { _selectedPenWidth = value; }
         }
 
         public Color SelectedColor
@@ -38,6 +45,13 @@ namespace ShapeShifter.View
             get { return _selectedColor; }
             set { _selectedColor = value; }
         }
+
+        public Shape SelectedFigure
+        {
+            get { return _selectedFigure; }
+            set {_selectedFigure = value; }
+        }
+
 
         public List<Shape> Drawn
         {
@@ -54,6 +68,8 @@ namespace ShapeShifter.View
             Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height);
             SelectedFigure= _shapes[3];
             SelectedColor = Color.Red;
+            SelectedPenWidth = int.Parse(comboBoxPenWidth.Text);
+            SelectedPen = new Pen(SelectedColor,SelectedPenWidth);
             Drawn = new List<Shape>();  
             _currentBitmap = new Bitmap(Canvas.Width, Canvas.Height);
         }
@@ -82,97 +98,96 @@ namespace ShapeShifter.View
             new PolygonalShape(7),
             new PolygonalShape(8)
         };
-        
-        #region toolStrip
-        private void toolStripMouseDraw_Click(object sender, EventArgs e)
+
+        #region PenSelect
+        private void buttonDefaultPen_Click(object sender, EventArgs e)
         {
-            _doMouseDraw = !_doMouseDraw;
-            _doDrawFigures = false;
-            _selectedFigure = null;
+            SelectedPen = new Pen(SelectedColor, SelectedPenWidth);
 
-
+            //SelectedPen.SetLineCap(LineCap.RoundAnchor, LineCap.RoundAnchor, DashCap.Round);
         }
 
-        private void toolStripFigures_Click(object sender, EventArgs e)
+        private void comboBoxPenWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
-            _doMouseDraw = false;
-            _doDrawFigures = true;
-        }
+            SelectedPenWidth = int.Parse(comboBoxPenWidth.Text);
 
-        #region FigureChoose
+            SelectedPen.Width = SelectedPenWidth;
 
-        private void прямоугольникToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectedFigure = _shapes[3];
+            //SelectedPen.SetLineCap(LineCap.RoundAnchor, LineCap.RoundAnchor, DashCap.Round);
+            
         }
-        private void эллипсToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectedFigure = _shapes[2];
-        }
-        private void треугольникToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectedFigure = _shapes[6];
-        }
-        private void квадратToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectedFigure= _shapes[4];
-        }
-
-        private void кругToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectedFigure= _shapes[1];
-        }
-
-        private void стрелочкаToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectedFigure= _shapes[0];
-        }
-
-        private void трапецияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SelectedFigure= _shapes[5];
-        }
-
         #endregion
 
-        #region ColorChoose
-        private void красныйToolStripMenuItem_Click(object sender, EventArgs e)
+        #region ColorSelect
+
+        private void buttonRed_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Red;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
         }
 
-        private void оранжевыйToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonOrange_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Orange;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
         }
 
-        private void жёлтыйToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonYellow_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Yellow;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
         }
 
-        private void зелёныйToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonGreen_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Green;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
         }
 
-        private void голубойToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonLightBlue_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.LightBlue;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
         }
 
-        private void синийToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonBlue_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Blue;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
         }
 
-        private void фиолетовыйToolStripMenuItem_Click(object sender, EventArgs e)
+        private void buttonPurple_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Purple;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
         }
-        private void белыйToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void buttonBrown_Click(object sender, EventArgs e)
         {
-            SelectedColor = Color.Transparent;
+            SelectedColor = Color.Brown;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
+        }
+
+        private void buttonBlack_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.Black;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
+        }
+
+        private void buttonWhite_Click(object sender, EventArgs e)
+        {
+            SelectedColor = Color.White;
+            SelectedPen.Color = SelectedColor;
+            SelectedFigure.Color = SelectedColor;
         }
         #endregion
 
@@ -203,7 +218,6 @@ namespace ShapeShifter.View
         {
             Canvas.Image.Save(@"D:\Prog\ShapeShifter\ShapeShifter.View\Images\MyPainting.png", ImageFormat.Png);
         }
-        #endregion
 
         #region Canvas
         private void Canvas_Resize(object sender, EventArgs e)
@@ -214,9 +228,6 @@ namespace ShapeShifter.View
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
             Point cursorPosition = new Point(MousePosition.X - this.Location.X - 8, MousePosition.Y - this.Location.Y - 30);
-
-            //Graphics g = Graphics.FromImage(Canvas.Image);
-            //g.SmoothingMode = SmoothingMode.HighQuality;
 
             if (_doDrawFigures)
             {
@@ -244,17 +255,10 @@ namespace ShapeShifter.View
 
 
             //Рисование мышью
-            if (_doMouseDraw)
+            if (e.Button == MouseButtons.Left)
             {
-                if (e.Button == MouseButtons.Left)
-                {
-                    Pen blackPen = new Pen(Color.Black, 1);
-
-                    g.DrawLine(blackPen, PreviousPoint, cursorPosition);
-                    blackPen.Dispose();
-                    
-                    Canvas.Invalidate();
-                }
+                g.DrawLine(SelectedPen,PreviousPoint, cursorPosition );
+                Canvas.Invalidate();
             }
             
             //Рисование фигуры
@@ -301,7 +305,7 @@ namespace ShapeShifter.View
 
         #endregion
 
-
+        #region DrawMethods
         /// <summary>
         /// Нарисовать фигуру
         /// </summary>
@@ -333,7 +337,9 @@ namespace ShapeShifter.View
                 graphics.DrawRectangles(pen, new RectangleF[] { shape.BoundingBox });
             }
         }
+        #endregion
 
+        #region Random
         /// <summary>
         /// Получить случайный цвет
         /// </summary>
@@ -360,6 +366,11 @@ namespace ShapeShifter.View
 
             return shape;
         }
+        #endregion
 
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
