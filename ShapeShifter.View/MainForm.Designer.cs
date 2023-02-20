@@ -389,6 +389,7 @@
             this.buttonClearCanvas.TabIndex = 20;
             this.buttonClearCanvas.Text = "Очистить холст";
             this.buttonClearCanvas.UseVisualStyleBackColor = true;
+            this.buttonClearCanvas.Click += new System.EventHandler(this.buttonClearCanvas_Click);
             // 
             // buttonWhite
             // 

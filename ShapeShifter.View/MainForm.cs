@@ -13,52 +13,69 @@ namespace ShapeShifter.View
     /// </summary>
     public partial class MainForm : Form
     {
+        #region Fields
+        /// <summary>
+        /// Точка на экране, где последний раз был курсор
+        /// </summary>
         private Point PreviousPoint = MousePosition;
+
+        /// <summary>
+        /// Точка на экране, где последний раз произошёл клик мышью
+        /// </summary>
         private Point MouseDownLocation;
 
+        //Выбранный инструменты
         private Shape _selectedShape;
         private Color _selectedColor;
         private Pen _selectedPen;
         private int _selectedPenWidth;
 
-
+        //Режими рисования
         private bool _doMouseDraw;
         private bool _doDrawShapes;
+        #endregion
 
-        private Bitmap _currentBitmap;
-        private List<Shape> _drawnShapes;
-
+        #region Properties
+        
+        /// <summary>
+        /// Доступ к выбранной кисти
+        /// </summary>
         public Pen SelectedPen
         {
             get { return _selectedPen; }
             set { _selectedPen = value; }
         }
         
+        /// <summary>
+        /// Доступ к толщине выбранной кисти
+        /// </summary>
         public int SelectedPenWidth
         {
             get { return _selectedPenWidth; }
             set { _selectedPenWidth = value; }
         }
 
+        /// <summary>
+        /// Доступ к выбранному цвету
+        /// </summary>
         public Color SelectedColor
         {
             get { return _selectedColor; }
             set { _selectedColor = value; }
         }
 
+        /// <summary>
+        /// Доступ к выбранной фигуре
+        /// </summary>
         public Shape SelectedShape
         {
             get { return _selectedShape; }
             set {_selectedShape = value; }
         }
 
+        #endregion
 
-        public List<Shape> Drawn
-        {
-            get { return _drawnShapes; }
-            set { _drawnShapes = value; }
-        }
-
+        #region Initialization
         /// <summary>
         /// Инициализация формы
         /// </summary>
@@ -70,8 +87,6 @@ namespace ShapeShifter.View
             SelectedColor = Color.Red;
             SelectedPenWidth = int.Parse(comboBoxPenWidth.Text);
             SelectedPen = new Pen(SelectedColor,SelectedPenWidth);
-            Drawn = new List<Shape>();  
-            _currentBitmap = new Bitmap(Canvas.Width, Canvas.Height);
         }
 
         /// <summary>
@@ -98,11 +113,17 @@ namespace ShapeShifter.View
             new PolygonalShape(7),
             new PolygonalShape(8)
         };
+        #endregion
 
         #region PenSelect
         private void buttonDefaultPen_Click(object sender, EventArgs e)
         {
+            SetShape();
+
             SelectedPen = new Pen(SelectedColor, SelectedPenWidth);
+
+            _doMouseDraw = true;
+            _doDrawShapes= false;
 
             //SelectedPen.SetLineCap(LineCap.RoundAnchor, LineCap.RoundAnchor, DashCap.Round);
         }
@@ -113,8 +134,11 @@ namespace ShapeShifter.View
 
             SelectedPen.Width = SelectedPenWidth;
 
+            _doMouseDraw= true;
+            _doDrawShapes = false;
+
             //SelectedPen.SetLineCap(LineCap.RoundAnchor, LineCap.RoundAnchor, DashCap.Round);
-            
+
         }
         #endregion
 
@@ -124,70 +148,110 @@ namespace ShapeShifter.View
         {
             SelectedColor = Color.Red;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonOrange_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Orange;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonYellow_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Yellow;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonGreen_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Green;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonLightBlue_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.LightBlue;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonBlue_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Blue;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonPurple_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Purple;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonBrown_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Brown;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonBlack_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Black;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
 
         private void buttonWhite_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.White;
             SelectedPen.Color = SelectedColor;
-            SelectedShape.Color = SelectedColor;
+            if (SelectedShape != null)
+            {
+                SelectedShape.Color = SelectedColor;
+                Canvas.Invalidate();
+            }
         }
         #endregion
 
@@ -195,82 +259,126 @@ namespace ShapeShifter.View
 
         private void buttonSquare_Click(object sender, EventArgs e)
         {
+            SetShape();
+            _doDrawShapes = true;
+            _doMouseDraw = false;
             SelectedShape = _shapes[4];
         }
 
         private void buttonCircle_Click(object sender, EventArgs e)
         {
+            SetShape();
+            _doDrawShapes = true;
+            _doMouseDraw = false;
             SelectedShape = _shapes[1];
         }
 
         private void buttonTrapezoid_Click(object sender, EventArgs e)
         {
+            SetShape();
+            _doDrawShapes = true;
+            _doMouseDraw = false;
             SelectedShape = _shapes[5];
         }
 
         private void buttonArrow_Click(object sender, EventArgs e)
         {
+            SetShape();
+            _doDrawShapes = true;
+            _doMouseDraw = false;
             SelectedShape = _shapes[0];
         }
 
         private void buttonRectangle_Click(object sender, EventArgs e)
         {
+            SetShape();
+            _doDrawShapes = true;
+            _doMouseDraw = false;
             SelectedShape = _shapes[3];
         }
 
         private void buttonEllipse_Click(object sender, EventArgs e)
         {
+            SetShape();
+            _doDrawShapes = true;
+            _doMouseDraw = false;
             SelectedShape = _shapes[2];
         }
 
         private void buttonTriangle_Click(object sender, EventArgs e)
         {
+            SetShape();
+            _doDrawShapes = true;
+            _doMouseDraw = false;
             SelectedShape = _shapes[6];
         }
 
         private void buttonSegment_Click(object sender, EventArgs e)
         {
+            SetShape();
+            _doDrawShapes = true;
+            _doMouseDraw = false;
             SelectedShape = _shapes[7];
         }
         #endregion
 
-        private void toolStripButtonSaveFigureToList_Click(object sender, EventArgs e)
-        {
-            Graphics g = Graphics.FromImage(Canvas.Image);
-            g.SmoothingMode= SmoothingMode.HighQuality;
-            if (SelectedShape != null)
-            {
-                using (Pen pen = new Pen(SelectedShape.OutlineColor, SelectedShape.OutlineWidth))
-                using (SolidBrush brush = new SolidBrush(SelectedShape.Color))
-                {
-                
-                    g.FillPath(brush, SelectedShape.GraphicsPath);
-                    g.DrawPath(pen, SelectedShape.GraphicsPath);
-                }
-            }
-            
-                
 
-            Canvas.Invalidate();
-        }
-        private void toolStripButtonClear_Click(object sender, EventArgs e)
-        {
-            Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height);
-        }
         private void toolStripSave_Click(object sender, EventArgs e)
         {
             Canvas.Image.Save(@"D:\Prog\ShapeShifter\ShapeShifter.View\Images\MyPainting.png", ImageFormat.Png);
         }
 
         #region Canvas
+        /// <summary>
+        /// Метод создает отпечаток фигуры на полотне,
+        /// то есть сохраняет и применяет изменения на рисунке, 
+        /// позволяя работать с ним дальше - 
+        /// добавлять новые объекты(фигуры) или рисовать линии мышью.
+        /// 
+        /// Если фигура не выбрана, ничего не происходит
+        /// </summary>
+        private void SetShape()
+        {
+            if (SelectedShape != null)
+            {
+                DrawSelectedShape();
+
+                SelectedShape = null;
+            }
+            Canvas.Invalidate();
+        }
+
+        private void DrawSelectedShape()
+        {
+            Graphics g = Graphics.FromImage(Canvas.Image);
+            g.SmoothingMode = SmoothingMode.HighQuality;
+
+            using (Pen pen = new Pen(SelectedShape.OutlineColor, SelectedShape.OutlineWidth))
+            using (SolidBrush brush = new SolidBrush(SelectedShape.Color))
+            {
+
+                g.FillPath(brush, SelectedShape.GraphicsPath);
+                g.DrawPath(pen, SelectedShape.GraphicsPath);
+            }
+        }
+
+
         private void Canvas_Resize(object sender, EventArgs e)
         {
             Canvas.Invalidate();
         }
+        private void buttonClearCanvas_Click(object sender, EventArgs e)
+        {
+            Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height);
+        }
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
         {
-            Point cursorPosition = new Point(MousePosition.X - this.Location.X - 8, MousePosition.Y - this.Location.Y - 30);
+            //Позиция курсора корректируется для корректного отображения изображения.
+            //Вычисляются его координаты относительно окна приложения
+            Point cursorPosition = new Point(
+                MousePosition.X - this.Location.X - 8, 
+                MousePosition.Y - this.Location.Y - 30);
 
             if (_doDrawShapes)
             {
@@ -291,49 +399,62 @@ namespace ShapeShifter.View
         }
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
-            Point cursorPosition = new Point(MousePosition.X - this.Location.X - 8, MousePosition.Y - this.Location.Y - 30);
+            //Позиция курсора корректируется для корректного отображения изображения.
+            //Вычисляются его координаты относительно окна приложения
+            Point cursorPosition = new Point(
+                MousePosition.X - this.Location.X - 8, 
+                MousePosition.Y - this.Location.Y - 30);
 
             Graphics g = Graphics.FromImage(Canvas.Image);
             g.SmoothingMode = SmoothingMode.HighQuality;
 
-
             //Рисование мышью
-            if (e.Button == MouseButtons.Left)
+            if (_doMouseDraw)
             {
-                g.DrawLine(SelectedPen,PreviousPoint, cursorPosition );
-                Canvas.Invalidate();
+                if (e.Button == MouseButtons.Left)
+                {
+                    g.DrawLine(SelectedPen,PreviousPoint, cursorPosition );
+                    Canvas.Invalidate();
+                }
             }
             
             //Рисование фигуры
             if (_doDrawShapes)
             {
+                //Изменение размера фигуры (Растягивание)
                 if (e.Button == MouseButtons.Left)
                 {
-                    SelectedShape.Size = new SizeF(e.X - SelectedShape.Location.X, e.Y - SelectedShape.Location.Y);
+                    SelectedShape.Size = new SizeF(
+                        e.X - SelectedShape.Location.X, 
+                        e.Y - SelectedShape.Location.Y);
 
                     Canvas.Invalidate();
                 }
 
+                //Изменение положения фигуры на экране
                 if (e.Button == MouseButtons.Right)
                 {
-                    SelectedShape.Location = new PointF((e.X - MouseDownLocation.X) + SelectedShape.Location.X, (e.Y - MouseDownLocation.Y) + SelectedShape.Location.Y);
+                    SelectedShape.Location = new PointF(
+                        e.X - MouseDownLocation.X + SelectedShape.Location.X, 
+                        e.Y - MouseDownLocation.Y + SelectedShape.Location.Y);
+
                     MouseDownLocation = e.Location;
+
                     Canvas.Invalidate();
 
                 }
             }
 
             PreviousPoint = cursorPosition;
-
         }
         
+
         /// <summary>
-         /// Перерисовка холста
-         /// </summary>
-         /// <param name="sender">Отправитель</param>
-         /// <param name="e">Событие перерисовки</param>
+        /// Перерисовка холста. Осуществляется при любом обращении к Canvas
+        /// </summary>
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
+            //Перерисовывает текущую фигуру
             if (_doDrawShapes && SelectedShape != null)
             {
                 using (Pen pen = new Pen(SelectedShape.OutlineColor, SelectedShape.OutlineWidth))
@@ -345,7 +466,6 @@ namespace ShapeShifter.View
             }
 
         }
-
         #endregion
 
         #region DrawMethods
@@ -416,5 +536,6 @@ namespace ShapeShifter.View
 
         }
 
+        
     }
 }
