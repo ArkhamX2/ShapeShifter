@@ -525,11 +525,27 @@ namespace ShapeShifter.View
                     //Изменение поворота фигуры (Вращение)
                     if (_doRotateShapes)
                     {
-                        SelectedShape.Angle = 45;
+                        //SelectedShape.Angle = 45;
+                        float angle = (float)Math.Atan(
+                            (SelectedShape.Center.Y - cursorPosition.Y) /
+                            (SelectedShape.Center.X - cursorPosition.X));                        
 
-                        //SelectedShape.Angle = (float)Math.Atan(
-                        //    Math.Abs(SelectedShape.Center.Y - cursorPosition.Y) / 
-                        //    Math.Abs(SelectedShape.Center.X - cursorPosition.X));
+                        if (SelectedShape.Center.Y < cursorPosition.Y && SelectedShape.Center.X < cursorPosition.X)
+                        {
+                            SelectedShape.Angle = angle;
+                        }
+                        else if (SelectedShape.Center.Y < cursorPosition.Y && SelectedShape.Center.X > cursorPosition.X)
+                        {
+                            SelectedShape.Angle = angle + 1.57f * 2f;
+                        }
+                        else if (SelectedShape.Center.Y > cursorPosition.Y && SelectedShape.Center.X < cursorPosition.X)
+                        {
+                            SelectedShape.Angle = angle;
+                        }
+                        else if (SelectedShape.Center.Y > cursorPosition.Y && SelectedShape.Center.X > cursorPosition.X)
+                        {
+                            SelectedShape.Angle = angle + 1.57f * 2f;
+                        }
 
                         textBox1.Text = SelectedShape.Angle.ToString();
                     }
