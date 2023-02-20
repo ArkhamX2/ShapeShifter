@@ -33,6 +33,29 @@
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.toolsPanel = new System.Windows.Forms.Panel();
+            this.buttonSetColorPicker = new System.Windows.Forms.Button();
+            this.labelCurrentColor = new System.Windows.Forms.Label();
+            this.buttonCurrentColor = new System.Windows.Forms.Button();
+            this.buttonSetColor = new System.Windows.Forms.Button();
+            this.labelBlue = new System.Windows.Forms.Label();
+            this.labelGreen = new System.Windows.Forms.Label();
+            this.labelRed = new System.Windows.Forms.Label();
+            this.labelSetColorRGB = new System.Windows.Forms.Label();
+            this.textBoxBlue = new System.Windows.Forms.TextBox();
+            this.textBoxGreen = new System.Windows.Forms.TextBox();
+            this.textBoxRed = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonSegment = new System.Windows.Forms.Button();
+            this.buttonRectangle = new System.Windows.Forms.Button();
+            this.buttonEllipse = new System.Windows.Forms.Button();
+            this.buttonTriangle = new System.Windows.Forms.Button();
+            this.buttonCircle = new System.Windows.Forms.Button();
+            this.buttonArrow = new System.Windows.Forms.Button();
+            this.buttonTrapezoid = new System.Windows.Forms.Button();
+            this.buttonSquare = new System.Windows.Forms.Button();
+            this.labelPenColor = new System.Windows.Forms.Label();
+            this.buttonSavePicture = new System.Windows.Forms.Button();
+            this.buttonClearCanvas = new System.Windows.Forms.Button();
             this.buttonWhite = new System.Windows.Forms.Button();
             this.buttonPurple = new System.Windows.Forms.Button();
             this.buttonBrown = new System.Windows.Forms.Button();
@@ -47,29 +70,6 @@
             this.comboBoxPenWidth = new System.Windows.Forms.ComboBox();
             this.buttonDefaultPen = new System.Windows.Forms.Button();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
-            this.buttonClearCanvas = new System.Windows.Forms.Button();
-            this.buttonSavePicture = new System.Windows.Forms.Button();
-            this.labelPenColor = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxRed = new System.Windows.Forms.TextBox();
-            this.textBoxGreen = new System.Windows.Forms.TextBox();
-            this.textBoxBlue = new System.Windows.Forms.TextBox();
-            this.labelSetColorRGB = new System.Windows.Forms.Label();
-            this.labelRed = new System.Windows.Forms.Label();
-            this.labelGreen = new System.Windows.Forms.Label();
-            this.labelBlue = new System.Windows.Forms.Label();
-            this.buttonSetColor = new System.Windows.Forms.Button();
-            this.buttonCurrentColor = new System.Windows.Forms.Button();
-            this.labelCurrentColor = new System.Windows.Forms.Label();
-            this.buttonSetColorPicker = new System.Windows.Forms.Button();
             this.panelCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -83,7 +83,7 @@
             this.panelCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCanvas.Location = new System.Drawing.Point(0, 0);
             this.panelCanvas.Name = "panelCanvas";
-            this.panelCanvas.Size = new System.Drawing.Size(1166, 684);
+            this.panelCanvas.Size = new System.Drawing.Size(1163, 684);
             this.panelCanvas.TabIndex = 1;
             // 
             // Canvas
@@ -93,7 +93,7 @@
             this.Canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Canvas.Location = new System.Drawing.Point(0, 0);
             this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(1166, 684);
+            this.Canvas.Size = new System.Drawing.Size(1163, 684);
             this.Canvas.TabIndex = 0;
             this.Canvas.TabStop = false;
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
@@ -127,14 +127,14 @@
             this.toolsPanel.Controls.Add(this.textBoxGreen);
             this.toolsPanel.Controls.Add(this.textBoxRed);
             this.toolsPanel.Controls.Add(this.label1);
-            this.toolsPanel.Controls.Add(this.button8);
-            this.toolsPanel.Controls.Add(this.button7);
-            this.toolsPanel.Controls.Add(this.button6);
-            this.toolsPanel.Controls.Add(this.button5);
-            this.toolsPanel.Controls.Add(this.button4);
-            this.toolsPanel.Controls.Add(this.button3);
-            this.toolsPanel.Controls.Add(this.button2);
-            this.toolsPanel.Controls.Add(this.button1);
+            this.toolsPanel.Controls.Add(this.buttonSegment);
+            this.toolsPanel.Controls.Add(this.buttonRectangle);
+            this.toolsPanel.Controls.Add(this.buttonEllipse);
+            this.toolsPanel.Controls.Add(this.buttonTriangle);
+            this.toolsPanel.Controls.Add(this.buttonCircle);
+            this.toolsPanel.Controls.Add(this.buttonArrow);
+            this.toolsPanel.Controls.Add(this.buttonTrapezoid);
+            this.toolsPanel.Controls.Add(this.buttonSquare);
             this.toolsPanel.Controls.Add(this.labelPenColor);
             this.toolsPanel.Controls.Add(this.buttonSavePicture);
             this.toolsPanel.Controls.Add(this.buttonClearCanvas);
@@ -152,15 +152,248 @@
             this.toolsPanel.Controls.Add(this.comboBoxPenWidth);
             this.toolsPanel.Controls.Add(this.buttonDefaultPen);
             this.toolsPanel.Dock = System.Windows.Forms.DockStyle.Right;
-            this.toolsPanel.Location = new System.Drawing.Point(1166, 0);
+            this.toolsPanel.Location = new System.Drawing.Point(1163, 0);
             this.toolsPanel.Name = "toolsPanel";
-            this.toolsPanel.Size = new System.Drawing.Size(261, 684);
+            this.toolsPanel.Size = new System.Drawing.Size(264, 684);
             this.toolsPanel.TabIndex = 2;
+            // 
+            // buttonSetColorPicker
+            // 
+            this.buttonSetColorPicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSetColorPicker.Location = new System.Drawing.Point(11, 475);
+            this.buttonSetColorPicker.Name = "buttonSetColorPicker";
+            this.buttonSetColorPicker.Size = new System.Drawing.Size(238, 35);
+            this.buttonSetColorPicker.TabIndex = 42;
+            this.buttonSetColorPicker.Text = "Выбрать новый цвет";
+            this.buttonSetColorPicker.UseVisualStyleBackColor = true;
+            // 
+            // labelCurrentColor
+            // 
+            this.labelCurrentColor.AutoSize = true;
+            this.labelCurrentColor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelCurrentColor.Location = new System.Drawing.Point(42, 131);
+            this.labelCurrentColor.Name = "labelCurrentColor";
+            this.labelCurrentColor.Size = new System.Drawing.Size(110, 21);
+            this.labelCurrentColor.TabIndex = 41;
+            this.labelCurrentColor.Text = "Текущий цвет";
+            // 
+            // buttonCurrentColor
+            // 
+            this.buttonCurrentColor.BackColor = System.Drawing.Color.Red;
+            this.buttonCurrentColor.Enabled = false;
+            this.buttonCurrentColor.Location = new System.Drawing.Point(204, 131);
+            this.buttonCurrentColor.Name = "buttonCurrentColor";
+            this.buttonCurrentColor.Size = new System.Drawing.Size(40, 40);
+            this.buttonCurrentColor.TabIndex = 40;
+            this.buttonCurrentColor.UseVisualStyleBackColor = false;
+            // 
+            // buttonSetColor
+            // 
+            this.buttonSetColor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSetColor.Location = new System.Drawing.Point(11, 434);
+            this.buttonSetColor.Name = "buttonSetColor";
+            this.buttonSetColor.Size = new System.Drawing.Size(238, 35);
+            this.buttonSetColor.TabIndex = 39;
+            this.buttonSetColor.Text = "Задать цвет";
+            this.buttonSetColor.UseVisualStyleBackColor = true;
+            // 
+            // labelBlue
+            // 
+            this.labelBlue.AutoSize = true;
+            this.labelBlue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelBlue.Location = new System.Drawing.Point(40, 401);
+            this.labelBlue.Name = "labelBlue";
+            this.labelBlue.Size = new System.Drawing.Size(43, 21);
+            this.labelBlue.TabIndex = 38;
+            this.labelBlue.Text = "Blue:";
+            // 
+            // labelGreen
+            // 
+            this.labelGreen.AutoSize = true;
+            this.labelGreen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelGreen.Location = new System.Drawing.Point(40, 366);
+            this.labelGreen.Name = "labelGreen";
+            this.labelGreen.Size = new System.Drawing.Size(55, 21);
+            this.labelGreen.TabIndex = 37;
+            this.labelGreen.Text = "Green:";
+            // 
+            // labelRed
+            // 
+            this.labelRed.AutoSize = true;
+            this.labelRed.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelRed.Location = new System.Drawing.Point(40, 331);
+            this.labelRed.Name = "labelRed";
+            this.labelRed.Size = new System.Drawing.Size(40, 21);
+            this.labelRed.TabIndex = 36;
+            this.labelRed.Text = "Red:";
+            // 
+            // labelSetColorRGB
+            // 
+            this.labelSetColorRGB.AutoSize = true;
+            this.labelSetColorRGB.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelSetColorRGB.Location = new System.Drawing.Point(95, 299);
+            this.labelSetColorRGB.Name = "labelSetColorRGB";
+            this.labelSetColorRGB.Size = new System.Drawing.Size(140, 21);
+            this.labelSetColorRGB.TabIndex = 35;
+            this.labelSetColorRGB.Text = "Задать цвет (RGB)";
+            // 
+            // textBoxBlue
+            // 
+            this.textBoxBlue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxBlue.Location = new System.Drawing.Point(142, 393);
+            this.textBoxBlue.Name = "textBoxBlue";
+            this.textBoxBlue.Size = new System.Drawing.Size(100, 29);
+            this.textBoxBlue.TabIndex = 34;
+            // 
+            // textBoxGreen
+            // 
+            this.textBoxGreen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxGreen.Location = new System.Drawing.Point(142, 358);
+            this.textBoxGreen.Name = "textBoxGreen";
+            this.textBoxGreen.Size = new System.Drawing.Size(100, 29);
+            this.textBoxGreen.TabIndex = 33;
+            // 
+            // textBoxRed
+            // 
+            this.textBoxRed.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxRed.Location = new System.Drawing.Point(142, 323);
+            this.textBoxRed.Name = "textBoxRed";
+            this.textBoxRed.Size = new System.Drawing.Size(100, 29);
+            this.textBoxRed.TabIndex = 32;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(173, 520);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(62, 21);
+            this.label1.TabIndex = 31;
+            this.label1.Text = "Фигура";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
+            // 
+            // buttonSegment
+            // 
+            this.buttonSegment.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonSegment.Image = ((System.Drawing.Image)(resources.GetObject("buttonSegment.Image")));
+            this.buttonSegment.Location = new System.Drawing.Point(204, 587);
+            this.buttonSegment.Name = "buttonSegment";
+            this.buttonSegment.Size = new System.Drawing.Size(40, 40);
+            this.buttonSegment.TabIndex = 30;
+            this.buttonSegment.UseVisualStyleBackColor = false;
+            this.buttonSegment.Click += new System.EventHandler(this.buttonSegment_Click);
+            // 
+            // buttonRectangle
+            // 
+            this.buttonRectangle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonRectangle.Image = ((System.Drawing.Image)(resources.GetObject("buttonRectangle.Image")));
+            this.buttonRectangle.Location = new System.Drawing.Point(66, 587);
+            this.buttonRectangle.Name = "buttonRectangle";
+            this.buttonRectangle.Size = new System.Drawing.Size(40, 40);
+            this.buttonRectangle.TabIndex = 29;
+            this.buttonRectangle.UseVisualStyleBackColor = false;
+            this.buttonRectangle.Click += new System.EventHandler(this.buttonRectangle_Click);
+            // 
+            // buttonEllipse
+            // 
+            this.buttonEllipse.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonEllipse.Image = ((System.Drawing.Image)(resources.GetObject("buttonEllipse.Image")));
+            this.buttonEllipse.Location = new System.Drawing.Point(112, 587);
+            this.buttonEllipse.Name = "buttonEllipse";
+            this.buttonEllipse.Size = new System.Drawing.Size(40, 40);
+            this.buttonEllipse.TabIndex = 28;
+            this.buttonEllipse.UseVisualStyleBackColor = false;
+            this.buttonEllipse.Click += new System.EventHandler(this.buttonEllipse_Click);
+            // 
+            // buttonTriangle
+            // 
+            this.buttonTriangle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonTriangle.Image = ((System.Drawing.Image)(resources.GetObject("buttonTriangle.Image")));
+            this.buttonTriangle.Location = new System.Drawing.Point(158, 587);
+            this.buttonTriangle.Name = "buttonTriangle";
+            this.buttonTriangle.Size = new System.Drawing.Size(40, 40);
+            this.buttonTriangle.TabIndex = 27;
+            this.buttonTriangle.UseVisualStyleBackColor = false;
+            this.buttonTriangle.Click += new System.EventHandler(this.buttonTriangle_Click);
+            // 
+            // buttonCircle
+            // 
+            this.buttonCircle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonCircle.Image = ((System.Drawing.Image)(resources.GetObject("buttonCircle.Image")));
+            this.buttonCircle.Location = new System.Drawing.Point(112, 544);
+            this.buttonCircle.Name = "buttonCircle";
+            this.buttonCircle.Size = new System.Drawing.Size(40, 40);
+            this.buttonCircle.TabIndex = 26;
+            this.buttonCircle.UseVisualStyleBackColor = false;
+            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
+            // 
+            // buttonArrow
+            // 
+            this.buttonArrow.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonArrow.Image = ((System.Drawing.Image)(resources.GetObject("buttonArrow.Image")));
+            this.buttonArrow.Location = new System.Drawing.Point(204, 544);
+            this.buttonArrow.Name = "buttonArrow";
+            this.buttonArrow.Size = new System.Drawing.Size(40, 40);
+            this.buttonArrow.TabIndex = 25;
+            this.buttonArrow.UseVisualStyleBackColor = false;
+            this.buttonArrow.Click += new System.EventHandler(this.buttonArrow_Click);
+            // 
+            // buttonTrapezoid
+            // 
+            this.buttonTrapezoid.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonTrapezoid.Image = ((System.Drawing.Image)(resources.GetObject("buttonTrapezoid.Image")));
+            this.buttonTrapezoid.Location = new System.Drawing.Point(158, 544);
+            this.buttonTrapezoid.Name = "buttonTrapezoid";
+            this.buttonTrapezoid.Size = new System.Drawing.Size(40, 40);
+            this.buttonTrapezoid.TabIndex = 24;
+            this.buttonTrapezoid.UseVisualStyleBackColor = false;
+            this.buttonTrapezoid.Click += new System.EventHandler(this.buttonTrapezoid_Click);
+            // 
+            // buttonSquare
+            // 
+            this.buttonSquare.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonSquare.Image = ((System.Drawing.Image)(resources.GetObject("buttonSquare.Image")));
+            this.buttonSquare.Location = new System.Drawing.Point(66, 544);
+            this.buttonSquare.Name = "buttonSquare";
+            this.buttonSquare.Size = new System.Drawing.Size(40, 40);
+            this.buttonSquare.TabIndex = 23;
+            this.buttonSquare.UseVisualStyleBackColor = false;
+            this.buttonSquare.Click += new System.EventHandler(this.buttonSquare_Click);
+            // 
+            // labelPenColor
+            // 
+            this.labelPenColor.AutoSize = true;
+            this.labelPenColor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelPenColor.Location = new System.Drawing.Point(146, 180);
+            this.labelPenColor.Name = "labelPenColor";
+            this.labelPenColor.Size = new System.Drawing.Size(89, 21);
+            this.labelPenColor.TabIndex = 22;
+            this.labelPenColor.Text = "Цвет кисти";
+            // 
+            // buttonSavePicture
+            // 
+            this.buttonSavePicture.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSavePicture.Location = new System.Drawing.Point(13, 12);
+            this.buttonSavePicture.Name = "buttonSavePicture";
+            this.buttonSavePicture.Size = new System.Drawing.Size(236, 35);
+            this.buttonSavePicture.TabIndex = 21;
+            this.buttonSavePicture.Text = "Сохранить";
+            this.buttonSavePicture.UseVisualStyleBackColor = true;
+            // 
+            // buttonClearCanvas
+            // 
+            this.buttonClearCanvas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonClearCanvas.Location = new System.Drawing.Point(11, 637);
+            this.buttonClearCanvas.Name = "buttonClearCanvas";
+            this.buttonClearCanvas.Size = new System.Drawing.Size(238, 35);
+            this.buttonClearCanvas.TabIndex = 20;
+            this.buttonClearCanvas.Text = "Очистить холст";
+            this.buttonClearCanvas.UseVisualStyleBackColor = true;
             // 
             // buttonWhite
             // 
             this.buttonWhite.BackColor = System.Drawing.Color.White;
-            this.buttonWhite.Location = new System.Drawing.Point(204, 203);
+            this.buttonWhite.Location = new System.Drawing.Point(204, 250);
             this.buttonWhite.Name = "buttonWhite";
             this.buttonWhite.Size = new System.Drawing.Size(40, 40);
             this.buttonWhite.TabIndex = 19;
@@ -170,7 +403,7 @@
             // buttonPurple
             // 
             this.buttonPurple.BackColor = System.Drawing.Color.Purple;
-            this.buttonPurple.Location = new System.Drawing.Point(66, 203);
+            this.buttonPurple.Location = new System.Drawing.Point(66, 250);
             this.buttonPurple.Name = "buttonPurple";
             this.buttonPurple.Size = new System.Drawing.Size(40, 40);
             this.buttonPurple.TabIndex = 18;
@@ -180,7 +413,7 @@
             // buttonBrown
             // 
             this.buttonBrown.BackColor = System.Drawing.Color.Brown;
-            this.buttonBrown.Location = new System.Drawing.Point(112, 203);
+            this.buttonBrown.Location = new System.Drawing.Point(112, 250);
             this.buttonBrown.Name = "buttonBrown";
             this.buttonBrown.Size = new System.Drawing.Size(40, 40);
             this.buttonBrown.TabIndex = 17;
@@ -190,7 +423,7 @@
             // buttonBlack
             // 
             this.buttonBlack.BackColor = System.Drawing.Color.Black;
-            this.buttonBlack.Location = new System.Drawing.Point(158, 203);
+            this.buttonBlack.Location = new System.Drawing.Point(158, 250);
             this.buttonBlack.Name = "buttonBlack";
             this.buttonBlack.Size = new System.Drawing.Size(40, 40);
             this.buttonBlack.TabIndex = 16;
@@ -200,7 +433,7 @@
             // buttonBlue
             // 
             this.buttonBlue.BackColor = System.Drawing.Color.Blue;
-            this.buttonBlue.Location = new System.Drawing.Point(20, 203);
+            this.buttonBlue.Location = new System.Drawing.Point(20, 250);
             this.buttonBlue.Name = "buttonBlue";
             this.buttonBlue.Size = new System.Drawing.Size(40, 40);
             this.buttonBlue.TabIndex = 15;
@@ -210,7 +443,7 @@
             // buttonLightBlue
             // 
             this.buttonLightBlue.BackColor = System.Drawing.Color.LightBlue;
-            this.buttonLightBlue.Location = new System.Drawing.Point(204, 157);
+            this.buttonLightBlue.Location = new System.Drawing.Point(204, 204);
             this.buttonLightBlue.Name = "buttonLightBlue";
             this.buttonLightBlue.Size = new System.Drawing.Size(40, 40);
             this.buttonLightBlue.TabIndex = 14;
@@ -220,7 +453,7 @@
             // buttonOrange
             // 
             this.buttonOrange.BackColor = System.Drawing.Color.Orange;
-            this.buttonOrange.Location = new System.Drawing.Point(66, 157);
+            this.buttonOrange.Location = new System.Drawing.Point(66, 204);
             this.buttonOrange.Name = "buttonOrange";
             this.buttonOrange.Size = new System.Drawing.Size(40, 40);
             this.buttonOrange.TabIndex = 12;
@@ -230,7 +463,7 @@
             // buttonYellow
             // 
             this.buttonYellow.BackColor = System.Drawing.Color.Yellow;
-            this.buttonYellow.Location = new System.Drawing.Point(112, 157);
+            this.buttonYellow.Location = new System.Drawing.Point(112, 204);
             this.buttonYellow.Name = "buttonYellow";
             this.buttonYellow.Size = new System.Drawing.Size(40, 40);
             this.buttonYellow.TabIndex = 11;
@@ -240,7 +473,7 @@
             // buttonGreen
             // 
             this.buttonGreen.BackColor = System.Drawing.Color.Green;
-            this.buttonGreen.Location = new System.Drawing.Point(158, 157);
+            this.buttonGreen.Location = new System.Drawing.Point(158, 204);
             this.buttonGreen.Name = "buttonGreen";
             this.buttonGreen.Size = new System.Drawing.Size(40, 40);
             this.buttonGreen.TabIndex = 10;
@@ -250,7 +483,7 @@
             // buttonRed
             // 
             this.buttonRed.BackColor = System.Drawing.Color.Red;
-            this.buttonRed.Location = new System.Drawing.Point(20, 157);
+            this.buttonRed.Location = new System.Drawing.Point(20, 204);
             this.buttonRed.Name = "buttonRed";
             this.buttonRed.Size = new System.Drawing.Size(40, 40);
             this.buttonRed.TabIndex = 9;
@@ -292,237 +525,13 @@
             // buttonDefaultPen
             // 
             this.buttonDefaultPen.BackColor = System.Drawing.Color.White;
+            this.buttonDefaultPen.Image = ((System.Drawing.Image)(resources.GetObject("buttonDefaultPen.Image")));
             this.buttonDefaultPen.Location = new System.Drawing.Point(23, 84);
             this.buttonDefaultPen.Name = "buttonDefaultPen";
             this.buttonDefaultPen.Size = new System.Drawing.Size(40, 40);
             this.buttonDefaultPen.TabIndex = 3;
             this.buttonDefaultPen.UseVisualStyleBackColor = false;
             this.buttonDefaultPen.Click += new System.EventHandler(this.buttonDefaultPen_Click);
-            // 
-            // buttonClearCanvas
-            // 
-            this.buttonClearCanvas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonClearCanvas.Location = new System.Drawing.Point(11, 637);
-            this.buttonClearCanvas.Name = "buttonClearCanvas";
-            this.buttonClearCanvas.Size = new System.Drawing.Size(238, 35);
-            this.buttonClearCanvas.TabIndex = 20;
-            this.buttonClearCanvas.Text = "Очистить холст";
-            this.buttonClearCanvas.UseVisualStyleBackColor = true;
-            // 
-            // buttonSavePicture
-            // 
-            this.buttonSavePicture.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSavePicture.Location = new System.Drawing.Point(13, 12);
-            this.buttonSavePicture.Name = "buttonSavePicture";
-            this.buttonSavePicture.Size = new System.Drawing.Size(236, 35);
-            this.buttonSavePicture.TabIndex = 21;
-            this.buttonSavePicture.Text = "Сохранить";
-            this.buttonSavePicture.UseVisualStyleBackColor = true;
-            // 
-            // labelPenColor
-            // 
-            this.labelPenColor.AutoSize = true;
-            this.labelPenColor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelPenColor.Location = new System.Drawing.Point(146, 133);
-            this.labelPenColor.Name = "labelPenColor";
-            this.labelPenColor.Size = new System.Drawing.Size(89, 21);
-            this.labelPenColor.TabIndex = 22;
-            this.labelPenColor.Text = "Цвет кисти";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
-            this.button1.Location = new System.Drawing.Point(66, 544);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 40);
-            this.button1.TabIndex = 23;
-            this.button1.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
-            this.button2.Location = new System.Drawing.Point(158, 544);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(40, 40);
-            this.button2.TabIndex = 24;
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button3
-            // 
-            this.button3.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
-            this.button3.Location = new System.Drawing.Point(204, 544);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(40, 40);
-            this.button3.TabIndex = 25;
-            this.button3.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button4.Image = ((System.Drawing.Image)(resources.GetObject("button4.Image")));
-            this.button4.Location = new System.Drawing.Point(112, 544);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(40, 40);
-            this.button4.TabIndex = 26;
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button5.Image = ((System.Drawing.Image)(resources.GetObject("button5.Image")));
-            this.button5.Location = new System.Drawing.Point(158, 587);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(40, 40);
-            this.button5.TabIndex = 27;
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // button6
-            // 
-            this.button6.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
-            this.button6.Location = new System.Drawing.Point(116, 587);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(40, 40);
-            this.button6.TabIndex = 28;
-            this.button6.UseVisualStyleBackColor = false;
-            // 
-            // button7
-            // 
-            this.button7.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button7.Image = ((System.Drawing.Image)(resources.GetObject("button7.Image")));
-            this.button7.Location = new System.Drawing.Point(66, 587);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(40, 40);
-            this.button7.TabIndex = 29;
-            this.button7.UseVisualStyleBackColor = false;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.button8.Image = ((System.Drawing.Image)(resources.GetObject("button8.Image")));
-            this.button8.Location = new System.Drawing.Point(204, 587);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(40, 40);
-            this.button8.TabIndex = 30;
-            this.button8.UseVisualStyleBackColor = false;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(173, 520);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 21);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Фигура";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
-            // 
-            // textBoxRed
-            // 
-            this.textBoxRed.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxRed.Location = new System.Drawing.Point(142, 276);
-            this.textBoxRed.Name = "textBoxRed";
-            this.textBoxRed.Size = new System.Drawing.Size(100, 29);
-            this.textBoxRed.TabIndex = 32;
-            // 
-            // textBoxGreen
-            // 
-            this.textBoxGreen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxGreen.Location = new System.Drawing.Point(142, 311);
-            this.textBoxGreen.Name = "textBoxGreen";
-            this.textBoxGreen.Size = new System.Drawing.Size(100, 29);
-            this.textBoxGreen.TabIndex = 33;
-            // 
-            // textBoxBlue
-            // 
-            this.textBoxBlue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBoxBlue.Location = new System.Drawing.Point(142, 346);
-            this.textBoxBlue.Name = "textBoxBlue";
-            this.textBoxBlue.Size = new System.Drawing.Size(100, 29);
-            this.textBoxBlue.TabIndex = 34;
-            // 
-            // labelSetColorRGB
-            // 
-            this.labelSetColorRGB.AutoSize = true;
-            this.labelSetColorRGB.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelSetColorRGB.Location = new System.Drawing.Point(95, 252);
-            this.labelSetColorRGB.Name = "labelSetColorRGB";
-            this.labelSetColorRGB.Size = new System.Drawing.Size(140, 21);
-            this.labelSetColorRGB.TabIndex = 35;
-            this.labelSetColorRGB.Text = "Задать цвет (RGB)";
-            // 
-            // labelRed
-            // 
-            this.labelRed.AutoSize = true;
-            this.labelRed.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelRed.Location = new System.Drawing.Point(40, 284);
-            this.labelRed.Name = "labelRed";
-            this.labelRed.Size = new System.Drawing.Size(40, 21);
-            this.labelRed.TabIndex = 36;
-            this.labelRed.Text = "Red:";
-            // 
-            // labelGreen
-            // 
-            this.labelGreen.AutoSize = true;
-            this.labelGreen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelGreen.Location = new System.Drawing.Point(40, 319);
-            this.labelGreen.Name = "labelGreen";
-            this.labelGreen.Size = new System.Drawing.Size(55, 21);
-            this.labelGreen.TabIndex = 37;
-            this.labelGreen.Text = "Green:";
-            // 
-            // labelBlue
-            // 
-            this.labelBlue.AutoSize = true;
-            this.labelBlue.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelBlue.Location = new System.Drawing.Point(40, 354);
-            this.labelBlue.Name = "labelBlue";
-            this.labelBlue.Size = new System.Drawing.Size(43, 21);
-            this.labelBlue.TabIndex = 38;
-            this.labelBlue.Text = "Blue:";
-            // 
-            // buttonSetColor
-            // 
-            this.buttonSetColor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSetColor.Location = new System.Drawing.Point(11, 387);
-            this.buttonSetColor.Name = "buttonSetColor";
-            this.buttonSetColor.Size = new System.Drawing.Size(238, 35);
-            this.buttonSetColor.TabIndex = 39;
-            this.buttonSetColor.Text = "Задать цвет";
-            this.buttonSetColor.UseVisualStyleBackColor = true;
-            // 
-            // buttonCurrentColor
-            // 
-            this.buttonCurrentColor.BackColor = System.Drawing.Color.Red;
-            this.buttonCurrentColor.Enabled = false;
-            this.buttonCurrentColor.Location = new System.Drawing.Point(202, 477);
-            this.buttonCurrentColor.Name = "buttonCurrentColor";
-            this.buttonCurrentColor.Size = new System.Drawing.Size(40, 40);
-            this.buttonCurrentColor.TabIndex = 40;
-            this.buttonCurrentColor.UseVisualStyleBackColor = false;
-            // 
-            // labelCurrentColor
-            // 
-            this.labelCurrentColor.AutoSize = true;
-            this.labelCurrentColor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCurrentColor.Location = new System.Drawing.Point(40, 477);
-            this.labelCurrentColor.Name = "labelCurrentColor";
-            this.labelCurrentColor.Size = new System.Drawing.Size(110, 21);
-            this.labelCurrentColor.TabIndex = 41;
-            this.labelCurrentColor.Text = "Текущий цвет";
-            // 
-            // buttonSetColorPicker
-            // 
-            this.buttonSetColorPicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSetColorPicker.Location = new System.Drawing.Point(11, 428);
-            this.buttonSetColorPicker.Name = "buttonSetColorPicker";
-            this.buttonSetColorPicker.Size = new System.Drawing.Size(238, 35);
-            this.buttonSetColorPicker.TabIndex = 42;
-            this.buttonSetColorPicker.Text = "Выбрать новый цвет";
-            this.buttonSetColorPicker.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
@@ -564,15 +573,15 @@
         private System.Windows.Forms.Label labelPenColor;
         private System.Windows.Forms.Button buttonSavePicture;
         private System.Windows.Forms.Button buttonClearCanvas;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonSquare;
+        private System.Windows.Forms.Button buttonTriangle;
+        private System.Windows.Forms.Button buttonCircle;
+        private System.Windows.Forms.Button buttonArrow;
+        private System.Windows.Forms.Button buttonTrapezoid;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.Button buttonSegment;
+        private System.Windows.Forms.Button buttonRectangle;
+        private System.Windows.Forms.Button buttonEllipse;
         private System.Windows.Forms.Button buttonSetColorPicker;
         private System.Windows.Forms.Label labelCurrentColor;
         private System.Windows.Forms.Button buttonCurrentColor;

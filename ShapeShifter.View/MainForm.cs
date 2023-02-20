@@ -16,14 +16,14 @@ namespace ShapeShifter.View
         private Point PreviousPoint = MousePosition;
         private Point MouseDownLocation;
 
-        private Shape _selectedFigure;
+        private Shape _selectedShape;
         private Color _selectedColor;
         private Pen _selectedPen;
         private int _selectedPenWidth;
 
 
         private bool _doMouseDraw;
-        private bool _doDrawFigures;
+        private bool _doDrawShapes;
 
         private Bitmap _currentBitmap;
         private List<Shape> _drawnShapes;
@@ -46,10 +46,10 @@ namespace ShapeShifter.View
             set { _selectedColor = value; }
         }
 
-        public Shape SelectedFigure
+        public Shape SelectedShape
         {
-            get { return _selectedFigure; }
-            set {_selectedFigure = value; }
+            get { return _selectedShape; }
+            set {_selectedShape = value; }
         }
 
 
@@ -66,7 +66,7 @@ namespace ShapeShifter.View
         {
             InitializeComponent();
             Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height);
-            SelectedFigure= _shapes[3];
+            SelectedShape= _shapes[3];
             SelectedColor = Color.Red;
             SelectedPenWidth = int.Parse(comboBoxPenWidth.Text);
             SelectedPen = new Pen(SelectedColor,SelectedPenWidth);
@@ -124,70 +124,113 @@ namespace ShapeShifter.View
         {
             SelectedColor = Color.Red;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonOrange_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Orange;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonYellow_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Yellow;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonGreen_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Green;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonLightBlue_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.LightBlue;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonBlue_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Blue;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonPurple_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Purple;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonBrown_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Brown;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonBlack_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.Black;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
         }
 
         private void buttonWhite_Click(object sender, EventArgs e)
         {
             SelectedColor = Color.White;
             SelectedPen.Color = SelectedColor;
-            SelectedFigure.Color = SelectedColor;
+            SelectedShape.Color = SelectedColor;
+        }
+        #endregion
+
+        #region ShapeSelect
+
+        private void buttonSquare_Click(object sender, EventArgs e)
+        {
+            SelectedShape = _shapes[4];
+        }
+
+        private void buttonCircle_Click(object sender, EventArgs e)
+        {
+            SelectedShape = _shapes[1];
+        }
+
+        private void buttonTrapezoid_Click(object sender, EventArgs e)
+        {
+            SelectedShape = _shapes[5];
+        }
+
+        private void buttonArrow_Click(object sender, EventArgs e)
+        {
+            SelectedShape = _shapes[0];
+        }
+
+        private void buttonRectangle_Click(object sender, EventArgs e)
+        {
+            SelectedShape = _shapes[3];
+        }
+
+        private void buttonEllipse_Click(object sender, EventArgs e)
+        {
+            SelectedShape = _shapes[2];
+        }
+
+        private void buttonTriangle_Click(object sender, EventArgs e)
+        {
+            SelectedShape = _shapes[6];
+        }
+
+        private void buttonSegment_Click(object sender, EventArgs e)
+        {
+            SelectedShape = _shapes[7];
         }
         #endregion
 
@@ -195,14 +238,14 @@ namespace ShapeShifter.View
         {
             Graphics g = Graphics.FromImage(Canvas.Image);
             g.SmoothingMode= SmoothingMode.HighQuality;
-            if (SelectedFigure != null)
+            if (SelectedShape != null)
             {
-                using (Pen pen = new Pen(SelectedFigure.OutlineColor, SelectedFigure.OutlineWidth))
-                using (SolidBrush brush = new SolidBrush(SelectedFigure.Color))
+                using (Pen pen = new Pen(SelectedShape.OutlineColor, SelectedShape.OutlineWidth))
+                using (SolidBrush brush = new SolidBrush(SelectedShape.Color))
                 {
                 
-                    g.FillPath(brush, SelectedFigure.GraphicsPath);
-                    g.DrawPath(pen, SelectedFigure.GraphicsPath);
+                    g.FillPath(brush, SelectedShape.GraphicsPath);
+                    g.DrawPath(pen, SelectedShape.GraphicsPath);
                 }
             }
             
@@ -229,15 +272,15 @@ namespace ShapeShifter.View
         {
             Point cursorPosition = new Point(MousePosition.X - this.Location.X - 8, MousePosition.Y - this.Location.Y - 30);
 
-            if (_doDrawFigures)
+            if (_doDrawShapes)
             {
                 if (e.Button == MouseButtons.Left )
                 {
 
-                    SelectedFigure.Location = cursorPosition;
-                    SelectedFigure.Size = new SizeF(200, 300);
-                    SelectedFigure.Color = SelectedColor;
-                    SelectedFigure.OutlineColor = Color.Black;  
+                    SelectedShape.Location = cursorPosition;
+                    SelectedShape.Size = new SizeF(200, 300);
+                    SelectedShape.Color = SelectedColor;
+                    SelectedShape.OutlineColor = Color.Black;  
 
                 }
                 if (e.Button == MouseButtons.Right)
@@ -262,18 +305,18 @@ namespace ShapeShifter.View
             }
             
             //Рисование фигуры
-            if (_doDrawFigures)
+            if (_doDrawShapes)
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    SelectedFigure.Size = new SizeF(e.X - SelectedFigure.Location.X, e.Y - SelectedFigure.Location.Y);
+                    SelectedShape.Size = new SizeF(e.X - SelectedShape.Location.X, e.Y - SelectedShape.Location.Y);
 
                     Canvas.Invalidate();
                 }
 
                 if (e.Button == MouseButtons.Right)
                 {
-                    SelectedFigure.Location = new PointF((e.X - MouseDownLocation.X) + SelectedFigure.Location.X, (e.Y - MouseDownLocation.Y) + SelectedFigure.Location.Y);
+                    SelectedShape.Location = new PointF((e.X - MouseDownLocation.X) + SelectedShape.Location.X, (e.Y - MouseDownLocation.Y) + SelectedShape.Location.Y);
                     MouseDownLocation = e.Location;
                     Canvas.Invalidate();
 
@@ -291,13 +334,13 @@ namespace ShapeShifter.View
          /// <param name="e">Событие перерисовки</param>
         private void Canvas_Paint(object sender, PaintEventArgs e)
         {
-            if (_doDrawFigures && SelectedFigure != null)
+            if (_doDrawShapes && SelectedShape != null)
             {
-                using (Pen pen = new Pen(SelectedFigure.OutlineColor, SelectedFigure.OutlineWidth))
-                using (SolidBrush brush = new SolidBrush(SelectedFigure.Color))
+                using (Pen pen = new Pen(SelectedShape.OutlineColor, SelectedShape.OutlineWidth))
+                using (SolidBrush brush = new SolidBrush(SelectedShape.Color))
                 {
-                    e.Graphics.FillPath(brush, SelectedFigure.GraphicsPath);
-                    e.Graphics.DrawPath(pen, SelectedFigure.GraphicsPath);
+                    e.Graphics.FillPath(brush, SelectedShape.GraphicsPath);
+                    e.Graphics.DrawPath(pen, SelectedShape.GraphicsPath);
                 }
             }
 
@@ -372,5 +415,6 @@ namespace ShapeShifter.View
         {
 
         }
+
     }
 }
