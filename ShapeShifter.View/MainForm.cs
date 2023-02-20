@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace ShapeShifter.View
@@ -27,7 +28,7 @@ namespace ShapeShifter.View
         /// <summary>
         /// Заливки для холста
         /// </summary>
-        private Bitmap _voidBitmap; 
+        private Bitmap _voidBitmap;
         private Bitmap _whitePlaneBitmap;
 
         //Выбранные инструменты
@@ -41,13 +42,15 @@ namespace ShapeShifter.View
         private bool _doDrawShapes;
         private bool _doRotateShapes;
         private bool _doResizeShapes;
+        private bool _doInteractions;
+
         #endregion
 
         #region Properties
 
         public Bitmap VoidBitmap
         {
-            get 
+            get
             {
                 _voidBitmap = new Bitmap(Canvas.Width, Canvas.Height);
                 return _voidBitmap;
@@ -56,7 +59,7 @@ namespace ShapeShifter.View
 
         public Bitmap WhitePlaneBitmap
         {
-            get 
+            get
             {
                 _whitePlaneBitmap = new Bitmap(Canvas.Width, Canvas.Height);
                 Graphics g = Graphics.FromImage(_whitePlaneBitmap);
@@ -73,7 +76,7 @@ namespace ShapeShifter.View
             get { return _selectedPen; }
             set { _selectedPen = value; }
         }
-        
+
         /// <summary>
         /// Доступ к толщине выбранной кисти
         /// </summary>
@@ -98,7 +101,7 @@ namespace ShapeShifter.View
         public Shape SelectedShape
         {
             get { return _selectedShape; }
-            set {_selectedShape = value; }
+            set { _selectedShape = value; }
         }
 
         #endregion
@@ -112,10 +115,10 @@ namespace ShapeShifter.View
             InitializeComponent();
             Canvas.Image = WhitePlaneBitmap;
 
-            SelectedShape= _shapes[3];
+            SelectedShape = _shapes[3];
             SelectedColor = Color.Red;
             SelectedPenWidth = int.Parse(comboBoxPenWidth.Text);
-            SelectedPen = new Pen(SelectedColor,SelectedPenWidth);
+            SelectedPen = new Pen(SelectedColor, SelectedPenWidth);
         }
 
         /// <summary>
@@ -153,11 +156,9 @@ namespace ShapeShifter.View
             SelectedPen = new Pen(SelectedColor, SelectedPenWidth);
 
             _doMouseDraw = true;
-            _doDrawShapes= false;
+            _doDrawShapes = false;
 
-            //SelectedPen.SetLineCap(LineCap.RoundAnchor, LineCap.RoundAnchor, DashCap.Round);
-
-            SelectedPen.SetLineCap(LineCap.Custom, LineCap.Custom, DashCap.Round);
+            SelectedPen.SetLineCap(LineCap.Custom, LineCap.Custom, DashCap.Flat);
         }
 
         private void comboBoxPenWidth_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,10 +167,10 @@ namespace ShapeShifter.View
 
             SelectedPen.Width = SelectedPenWidth;
 
-            _doMouseDraw= true;
+            _doMouseDraw = true;
             _doDrawShapes = false;
 
-            //SelectedPen.SetLineCap(LineCap.RoundAnchor, LineCap.RoundAnchor, DashCap.Round);
+            SelectedPen.SetLineCap(LineCap.Custom, LineCap.Custom, DashCap.Round);
 
         }
         #endregion
@@ -307,9 +308,9 @@ namespace ShapeShifter.View
                 SelectedColor = Color.FromArgb(red, green, blue);
                 buttonCurrentColor.BackColor = SelectedColor;
             }
-            catch 
+            catch
             {
-                MessageBox.Show("Неверно указаны значения цветов RGB","Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show("Неверно указаны значения цветов RGB", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -323,6 +324,10 @@ namespace ShapeShifter.View
             _doDrawShapes = true;
             _doMouseDraw = false;
             SelectedShape = _shapes[4];
+            SelectedShape.Size = new SizeF(200, 300);
+            _doResizeShapes = false;
+            _doRotateShapes = false;
+            _doInteractions = true;
         }
 
         private void buttonCircle_Click(object sender, EventArgs e)
@@ -331,6 +336,9 @@ namespace ShapeShifter.View
             _doDrawShapes = true;
             _doMouseDraw = false;
             SelectedShape = _shapes[1];
+            _doResizeShapes = false;
+            _doRotateShapes = false;
+            _doInteractions = true;
         }
 
         private void buttonTrapezoid_Click(object sender, EventArgs e)
@@ -339,6 +347,9 @@ namespace ShapeShifter.View
             _doDrawShapes = true;
             _doMouseDraw = false;
             SelectedShape = _shapes[5];
+            _doResizeShapes = false;
+            _doRotateShapes = false;
+            _doInteractions = true;
         }
 
         private void buttonArrow_Click(object sender, EventArgs e)
@@ -347,6 +358,9 @@ namespace ShapeShifter.View
             _doDrawShapes = true;
             _doMouseDraw = false;
             SelectedShape = _shapes[0];
+            _doResizeShapes = false;
+            _doRotateShapes = false;
+            _doInteractions = true;
         }
 
         private void buttonRectangle_Click(object sender, EventArgs e)
@@ -355,6 +369,9 @@ namespace ShapeShifter.View
             _doDrawShapes = true;
             _doMouseDraw = false;
             SelectedShape = _shapes[3];
+            _doResizeShapes = false;
+            _doRotateShapes = false;
+            _doInteractions = true;
         }
 
         private void buttonEllipse_Click(object sender, EventArgs e)
@@ -363,6 +380,9 @@ namespace ShapeShifter.View
             _doDrawShapes = true;
             _doMouseDraw = false;
             SelectedShape = _shapes[2];
+            _doResizeShapes = false;
+            _doRotateShapes = false;
+            _doInteractions = true;
         }
 
         private void buttonTriangle_Click(object sender, EventArgs e)
@@ -371,6 +391,9 @@ namespace ShapeShifter.View
             _doDrawShapes = true;
             _doMouseDraw = false;
             SelectedShape = _shapes[6];
+            _doResizeShapes = false;
+            _doRotateShapes = false;
+            _doInteractions = true;
         }
 
         private void buttonSegment_Click(object sender, EventArgs e)
@@ -379,15 +402,19 @@ namespace ShapeShifter.View
             _doDrawShapes = true;
             _doMouseDraw = false;
             SelectedShape = _shapes[7];
+            _doResizeShapes = false;
+            _doRotateShapes = false;
+            _doInteractions = true;
         }
+
         #endregion
 
         #region Other
 
         private void buttonRotate_Click(object sender, EventArgs e)
         {
-            _doRotateShapes= true;
-            _doResizeShapes= false;
+            _doRotateShapes = true;
+            _doResizeShapes = false;
         }
 
         private void buttonResize_Click(object sender, EventArgs e)
@@ -407,7 +434,7 @@ namespace ShapeShifter.View
             openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG| " +
                 "All files(*.*)|*.*";
 
-            if(openFileDialog.ShowDialog() == DialogResult.OK)
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
@@ -415,24 +442,24 @@ namespace ShapeShifter.View
                 }
                 catch
                 {
-                    MessageBox.Show("Невозможно открыть картинку","Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    MessageBox.Show("Невозможно открыть картинку", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
 
         private void buttonSavePicture_Click(object sender, EventArgs e)
         {
-            if(SelectedShape!= null)
+            if (SelectedShape != null)
             {
                 SetShape();
             }
 
-            if(Canvas.Image != null)
+            if (Canvas.Image != null)
             {
                 SaveFileDialog saveFileDialog = new SaveFileDialog();
                 saveFileDialog.Title = "Сохранить картинку как...";
                 saveFileDialog.OverwritePrompt = true;
-                saveFileDialog.CheckPathExists= true;
+                saveFileDialog.CheckPathExists = true;
                 saveFileDialog.Filter = "Image Files(*.BMP)|*.BMP" +
                     "|Image Files(*.JPG)|*.JPG|" +
                     "Image Files(*.GIF)|*.GIF|" +
@@ -440,7 +467,7 @@ namespace ShapeShifter.View
                     "All files(*.*)|*.*";
                 saveFileDialog.ShowHelp = true;
 
-                if(saveFileDialog.ShowDialog() == DialogResult.OK)
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     try
                     {
@@ -448,8 +475,8 @@ namespace ShapeShifter.View
                     }
                     catch
                     {
-                        MessageBox.Show("Невозможно сохранить изображение","Ошибка",
-                            MessageBoxButtons.OK,MessageBoxIcon.Error);
+                        MessageBox.Show("Невозможно сохранить изображение", "Ошибка",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -471,18 +498,22 @@ namespace ShapeShifter.View
             //Позиция курсора корректируется для корректного отображения изображения.
             //Вычисляются его координаты относительно окна приложения
             Point cursorPosition = new Point(
-                MousePosition.X - this.Location.X - 8, 
+                MousePosition.X - this.Location.X - 8,
                 MousePosition.Y - this.Location.Y - 30);
 
             if (_doDrawShapes && SelectedShape != null)
             {
-                if (e.Button == MouseButtons.Left )
+                if (e.Button == MouseButtons.Left)
                 {
-
-                    SelectedShape.Location = cursorPosition;
-                    SelectedShape.Size = new SizeF(200, 300);
+                    if (_doInteractions)
+                    {
+                        SelectedShape.Location = cursorPosition;
+                        SelectedShape.Size = new SizeF(200, 300);
+                        _doInteractions = false;
+                    }
                     SelectedShape.Color = SelectedColor;
                     SelectedShape.OutlineColor = Color.Black;
+                    Canvas.Invalidate();
                 }
                 if (e.Button == MouseButtons.Right)
                 {
@@ -490,88 +521,80 @@ namespace ShapeShifter.View
                 }
             }
         }
+
         private void Canvas_MouseMove(object sender, MouseEventArgs e)
         {
             //Позиция курсора корректируется для корректного отображения изображения.
             //Вычисляются его координаты относительно окна приложения
             Point cursorPosition = new Point(
-                MousePosition.X - this.Location.X - 8, 
+                MousePosition.X - this.Location.X - 8,
                 MousePosition.Y - this.Location.Y - 30);
 
             Graphics g = Graphics.FromImage(Canvas.Image);
             g.SmoothingMode = SmoothingMode.HighQuality;
+
+
 
             //Рисование мышью
             if (_doMouseDraw)
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    g.DrawLine(SelectedPen,PreviousPoint, cursorPosition );
-                    Canvas.Invalidate();
+                    g.DrawLine(SelectedPen, PreviousPoint, cursorPosition);
                 }
             }
-            
+
             //Рисование фигуры
-            if (_doDrawShapes && SelectedShape!=null)
+            if (_doDrawShapes && SelectedShape != null)
             {
+
                 //Изменение размера фигуры (Растягивание)
                 if (e.Button == MouseButtons.Left)
                 {
                     if (_doResizeShapes)
                     {
-                        SelectedShape.Size = new SizeF(
-                            e.X - SelectedShape.Location.X, 
-                            e.Y - SelectedShape.Location.Y);
+                        SelectedShape.Size = new SizeF(e.X - SelectedShape.Location.X,
+                e.Y - SelectedShape.Location.Y);
                     }
 
                     //Изменение поворота фигуры (Вращение)
                     if (_doRotateShapes)
                     {
-                        //SelectedShape.Angle = 45;
                         float angle = (float)Math.Atan(
                             (SelectedShape.Center.Y - cursorPosition.Y) /
-                            (SelectedShape.Center.X - cursorPosition.X));                        
+                            (SelectedShape.Center.X - cursorPosition.X));
 
-                        if (SelectedShape.Center.Y < cursorPosition.Y && SelectedShape.Center.X < cursorPosition.X)
-                        {
-                            SelectedShape.Angle = angle;
-                        }
-                        else if (SelectedShape.Center.Y < cursorPosition.Y && SelectedShape.Center.X > cursorPosition.X)
+                        if (SelectedShape.Center.Y <= cursorPosition.Y && SelectedShape.Center.X >= cursorPosition.X)
                         {
                             SelectedShape.Angle = angle + 1.57f * 2f;
                         }
-                        else if (SelectedShape.Center.Y > cursorPosition.Y && SelectedShape.Center.X < cursorPosition.X)
-                        {
-                            SelectedShape.Angle = angle;
-                        }
-                        else if (SelectedShape.Center.Y > cursorPosition.Y && SelectedShape.Center.X > cursorPosition.X)
+                        else if (SelectedShape.Center.Y >= cursorPosition.Y && SelectedShape.Center.X >= cursorPosition.X)
                         {
                             SelectedShape.Angle = angle + 1.57f * 2f;
                         }
+                        else SelectedShape.Angle = angle;
 
                         textBox1.Text = SelectedShape.Angle.ToString();
+
                     }
-                    Canvas.Invalidate();
                 }
 
                 //Изменение положения фигуры на экране (Перетаскивание)
                 if (e.Button == MouseButtons.Right)
                 {
                     SelectedShape.Location = new PointF(
-                        e.X - MouseDownLocation.X + SelectedShape.Location.X, 
+                        e.X - MouseDownLocation.X + SelectedShape.Location.X,
                         e.Y - MouseDownLocation.Y + SelectedShape.Location.Y);
 
                     MouseDownLocation = e.Location;
 
-                    Canvas.Invalidate();
-
                 }
 
             }
-
+            Canvas.Invalidate();
             PreviousPoint = cursorPosition;
         }
-        
+
 
         /// <summary>
         /// Перерисовка холста. Осуществляется при любом обращении к Canvas
@@ -634,7 +657,7 @@ namespace ShapeShifter.View
             using (Pen pen = new Pen(Color.Gray, Shape.DefaultOutlineWidth))
             {
                 pen.DashStyle = DashStyle.Dash;
-                
+
                 graphics.DrawRectangles(pen, new RectangleF[] { shape.BoundingBox });
             }
         }
