@@ -44,7 +44,7 @@
             this.textBoxBlue = new System.Windows.Forms.TextBox();
             this.textBoxGreen = new System.Windows.Forms.TextBox();
             this.textBoxRed = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.labelShape = new System.Windows.Forms.Label();
             this.buttonSegment = new System.Windows.Forms.Button();
             this.buttonRectangle = new System.Windows.Forms.Button();
             this.buttonEllipse = new System.Windows.Forms.Button();
@@ -70,6 +70,7 @@
             this.comboBoxPenWidth = new System.Windows.Forms.ComboBox();
             this.buttonDefaultPen = new System.Windows.Forms.Button();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
+            this.buttonOpen = new System.Windows.Forms.Button();
             this.panelCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -115,6 +116,7 @@
             // toolsPanel
             // 
             this.toolsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.toolsPanel.Controls.Add(this.buttonOpen);
             this.toolsPanel.Controls.Add(this.buttonSetColorPicker);
             this.toolsPanel.Controls.Add(this.labelCurrentColor);
             this.toolsPanel.Controls.Add(this.buttonCurrentColor);
@@ -126,7 +128,7 @@
             this.toolsPanel.Controls.Add(this.textBoxBlue);
             this.toolsPanel.Controls.Add(this.textBoxGreen);
             this.toolsPanel.Controls.Add(this.textBoxRed);
-            this.toolsPanel.Controls.Add(this.label1);
+            this.toolsPanel.Controls.Add(this.labelShape);
             this.toolsPanel.Controls.Add(this.buttonSegment);
             this.toolsPanel.Controls.Add(this.buttonRectangle);
             this.toolsPanel.Controls.Add(this.buttonEllipse);
@@ -196,6 +198,7 @@
             this.buttonSetColor.TabIndex = 39;
             this.buttonSetColor.Text = "Задать цвет";
             this.buttonSetColor.UseVisualStyleBackColor = true;
+            this.buttonSetColor.Click += new System.EventHandler(this.buttonSetColor_Click);
             // 
             // labelBlue
             // 
@@ -261,16 +264,15 @@
             this.textBoxRed.Size = new System.Drawing.Size(100, 29);
             this.textBoxRed.TabIndex = 32;
             // 
-            // label1
+            // labelShape
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(173, 520);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(62, 21);
-            this.label1.TabIndex = 31;
-            this.label1.Text = "Фигура";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
+            this.labelShape.AutoSize = true;
+            this.labelShape.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelShape.Location = new System.Drawing.Point(173, 520);
+            this.labelShape.Name = "labelShape";
+            this.labelShape.Size = new System.Drawing.Size(62, 21);
+            this.labelShape.TabIndex = 31;
+            this.labelShape.Text = "Фигура";
             // 
             // buttonSegment
             // 
@@ -373,12 +375,13 @@
             // buttonSavePicture
             // 
             this.buttonSavePicture.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonSavePicture.Location = new System.Drawing.Point(13, 12);
+            this.buttonSavePicture.Location = new System.Drawing.Point(142, 12);
             this.buttonSavePicture.Name = "buttonSavePicture";
-            this.buttonSavePicture.Size = new System.Drawing.Size(236, 35);
+            this.buttonSavePicture.Size = new System.Drawing.Size(107, 35);
             this.buttonSavePicture.TabIndex = 21;
             this.buttonSavePicture.Text = "Сохранить";
             this.buttonSavePicture.UseVisualStyleBackColor = true;
+            this.buttonSavePicture.Click += new System.EventHandler(this.buttonSavePicture_Click);
             // 
             // buttonClearCanvas
             // 
@@ -534,6 +537,17 @@
             this.buttonDefaultPen.UseVisualStyleBackColor = false;
             this.buttonDefaultPen.Click += new System.EventHandler(this.buttonDefaultPen_Click);
             // 
+            // buttonOpen
+            // 
+            this.buttonOpen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonOpen.Location = new System.Drawing.Point(11, 12);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(116, 35);
+            this.buttonOpen.TabIndex = 43;
+            this.buttonOpen.Text = "Открыть";
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -579,7 +593,7 @@
         private System.Windows.Forms.Button buttonCircle;
         private System.Windows.Forms.Button buttonArrow;
         private System.Windows.Forms.Button buttonTrapezoid;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label labelShape;
         private System.Windows.Forms.Button buttonSegment;
         private System.Windows.Forms.Button buttonRectangle;
         private System.Windows.Forms.Button buttonEllipse;
@@ -594,6 +608,7 @@
         private System.Windows.Forms.TextBox textBoxBlue;
         private System.Windows.Forms.TextBox textBoxGreen;
         private System.Windows.Forms.TextBox textBoxRed;
+        private System.Windows.Forms.Button buttonOpen;
     }
 }
 

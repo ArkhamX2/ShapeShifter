@@ -24,19 +24,45 @@ namespace ShapeShifter.View
         /// </summary>
         private Point MouseDownLocation;
 
-        //Выбранный инструменты
+        /// <summary>
+        /// Заливки для холста
+        /// </summary>
+        private Bitmap _voidBitmap; 
+        private Bitmap _whitePlaneBitmap;
+
+        //Выбранные инструменты
         private Shape _selectedShape;
         private Color _selectedColor;
         private Pen _selectedPen;
         private int _selectedPenWidth;
 
-        //Режими рисования
+        //Режимы рисования
         private bool _doMouseDraw;
         private bool _doDrawShapes;
         #endregion
 
         #region Properties
         
+        public Bitmap VoidBitmap
+        {
+            get 
+            {
+                _voidBitmap = new Bitmap(Canvas.Width, Canvas.Height);
+                return _voidBitmap;
+            }
+        }
+
+        public Bitmap WhitePlaneBitmap
+        {
+            get 
+            {
+                _whitePlaneBitmap = new Bitmap(Canvas.Width, Canvas.Height);
+                Graphics g = Graphics.FromImage(_whitePlaneBitmap);
+                g.Clear(Color.White);
+                return _whitePlaneBitmap;
+            }
+        }
+
         /// <summary>
         /// Доступ к выбранной кисти
         /// </summary>
@@ -82,7 +108,8 @@ namespace ShapeShifter.View
         public MainForm()
         {
             InitializeComponent();
-            Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height);
+            Canvas.Image = WhitePlaneBitmap;
+
             SelectedShape= _shapes[3];
             SelectedColor = Color.Red;
             SelectedPenWidth = int.Parse(comboBoxPenWidth.Text);
@@ -115,6 +142,7 @@ namespace ShapeShifter.View
         };
         #endregion
 
+        #region Tools
         #region PenSelect
         private void buttonDefaultPen_Click(object sender, EventArgs e)
         {
@@ -153,6 +181,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonOrange_Click(object sender, EventArgs e)
@@ -164,6 +193,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonYellow_Click(object sender, EventArgs e)
@@ -175,6 +205,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonGreen_Click(object sender, EventArgs e)
@@ -186,6 +217,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonLightBlue_Click(object sender, EventArgs e)
@@ -197,6 +229,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonBlue_Click(object sender, EventArgs e)
@@ -208,6 +241,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonPurple_Click(object sender, EventArgs e)
@@ -219,6 +253,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonBrown_Click(object sender, EventArgs e)
@@ -230,6 +265,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonBlack_Click(object sender, EventArgs e)
@@ -241,6 +277,7 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+            buttonCurrentColor.BackColor = SelectedColor;
         }
 
         private void buttonWhite_Click(object sender, EventArgs e)
@@ -252,7 +289,26 @@ namespace ShapeShifter.View
                 SelectedShape.Color = SelectedColor;
                 Canvas.Invalidate();
             }
+
+            buttonCurrentColor.BackColor = SelectedColor;
         }
+
+        private void buttonSetColor_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int red = int.Parse(textBoxRed.Text);
+                int green = int.Parse(textBoxGreen.Text);
+                int blue = int.Parse(textBoxBlue.Text);
+                SelectedColor = Color.FromArgb(red, green, blue);
+                buttonCurrentColor.BackColor = SelectedColor;
+            }
+            catch 
+            {
+                MessageBox.Show("Неверно указаны значения цветов RGB","Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
+        }
+
         #endregion
 
         #region ShapeSelect
@@ -322,54 +378,75 @@ namespace ShapeShifter.View
         }
         #endregion
 
-
-        private void toolStripSave_Click(object sender, EventArgs e)
+        #region Other
+        private void buttonClearCanvas_Click(object sender, EventArgs e)
         {
-            Canvas.Image.Save(@"D:\Prog\ShapeShifter\ShapeShifter.View\Images\MyPainting.png", ImageFormat.Png);
+            Canvas.Image = WhitePlaneBitmap;
         }
 
-        #region Canvas
-        /// <summary>
-        /// Метод создает отпечаток фигуры на полотне,
-        /// то есть сохраняет и применяет изменения на рисунке, 
-        /// позволяя работать с ним дальше - 
-        /// добавлять новые объекты(фигуры) или рисовать линии мышью.
-        /// 
-        /// Если фигура не выбрана, ничего не происходит
-        /// </summary>
-        private void SetShape()
+        private void buttonOpen_Click(object sender, EventArgs e)
         {
-            if (SelectedShape != null)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files(*.BMP;*.JPG;*.GIF;*.PNG)|*.BMP;*.JPG;*.GIF;*.PNG| " +
+                "All files(*.*)|*.*";
+
+            if(openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                DrawSelectedShape();
-
-                SelectedShape = null;
-            }
-            Canvas.Invalidate();
-        }
-
-        private void DrawSelectedShape()
-        {
-            Graphics g = Graphics.FromImage(Canvas.Image);
-            g.SmoothingMode = SmoothingMode.HighQuality;
-
-            using (Pen pen = new Pen(SelectedShape.OutlineColor, SelectedShape.OutlineWidth))
-            using (SolidBrush brush = new SolidBrush(SelectedShape.Color))
-            {
-
-                g.FillPath(brush, SelectedShape.GraphicsPath);
-                g.DrawPath(pen, SelectedShape.GraphicsPath);
+                try
+                {
+                    Canvas.Image = new Bitmap(openFileDialog.FileName);
+                }
+                catch
+                {
+                    MessageBox.Show("Невозможно открыть картинку","Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                }
             }
         }
 
+        private void buttonSavePicture_Click(object sender, EventArgs e)
+        {
+            if(SelectedShape!= null)
+            {
+                SetShape();
+            }
+
+            if(Canvas.Image != null)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Title = "Сохранить картинку как...";
+                saveFileDialog.OverwritePrompt = true;
+                saveFileDialog.CheckPathExists= true;
+                saveFileDialog.Filter = "Image Files(*.BMP)|*.BMP" +
+                    "|Image Files(*.JPG)|*.JPG|" +
+                    "Image Files(*.GIF)|*.GIF|" +
+                    "Image Files(*.PNG)|*.PNG|" +
+                    "All files(*.*)|*.*";
+                saveFileDialog.ShowHelp = true;
+
+                if(saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        Canvas.Image.Save(saveFileDialog.FileName);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Невозможно сохранить изображение","Ошибка",
+                            MessageBoxButtons.OK,MessageBoxIcon.Error);
+                    }
+                }
+            }
+        }
+
+        #endregion
+
+        #endregion
+
+        #region CanvasEvents
 
         private void Canvas_Resize(object sender, EventArgs e)
         {
             Canvas.Invalidate();
-        }
-        private void buttonClearCanvas_Click(object sender, EventArgs e)
-        {
-            Canvas.Image = new Bitmap(Canvas.Width, Canvas.Height);
         }
 
         private void Canvas_MouseDown(object sender, MouseEventArgs e)
@@ -380,7 +457,7 @@ namespace ShapeShifter.View
                 MousePosition.X - this.Location.X - 8, 
                 MousePosition.Y - this.Location.Y - 30);
 
-            if (_doDrawShapes)
+            if (_doDrawShapes && SelectedShape != null)
             {
                 if (e.Button == MouseButtons.Left )
                 {
@@ -419,7 +496,7 @@ namespace ShapeShifter.View
             }
             
             //Рисование фигуры
-            if (_doDrawShapes)
+            if (_doDrawShapes && SelectedShape!=null)
             {
                 //Изменение размера фигуры (Растягивание)
                 if (e.Button == MouseButtons.Left)
@@ -470,19 +547,33 @@ namespace ShapeShifter.View
 
         #region DrawMethods
         /// <summary>
-        /// Нарисовать фигуру
+        /// Метод создает отпечаток фигуры на полотне,
+        /// то есть сохраняет и применяет изменения на рисунке, 
+        /// позволяя работать с ним дальше - 
+        /// добавлять новые объекты(фигуры) или рисовать линии мышью.
+        /// 
+        /// Если фигура не выбрана, ничего не происходит
         /// </summary>
-        /// <param name="graphics">Графика</param>
-        /// <param name="shape">Фигура</param>
-        private void DrawShape(Graphics graphics, Shape shape)
+        private void SetShape()
         {
-            GraphicsPath path = shape.GraphicsPath;
-
-            using (Pen pen = new Pen(shape.OutlineColor, shape.OutlineWidth))
-            using (SolidBrush brush = new SolidBrush(shape.Color))
+            if (SelectedShape != null)
             {
-                graphics.FillPath(brush, path);
-                graphics.DrawPath(pen, path);
+                DrawSelectedShape();
+
+                SelectedShape = null;
+            }
+            Canvas.Invalidate();
+        }
+        private void DrawSelectedShape()
+        {
+            Graphics g = Graphics.FromImage(Canvas.Image);
+            g.SmoothingMode = SmoothingMode.HighQuality;
+
+            using (Pen pen = new Pen(SelectedShape.OutlineColor, SelectedShape.OutlineWidth))
+            using (SolidBrush brush = new SolidBrush(SelectedShape.Color))
+            {
+                g.FillPath(brush, SelectedShape.GraphicsPath);
+                g.DrawPath(pen, SelectedShape.GraphicsPath);
             }
         }
 
@@ -531,11 +622,5 @@ namespace ShapeShifter.View
         }
         #endregion
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        
     }
 }
