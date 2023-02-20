@@ -118,8 +118,14 @@ namespace ShapeShifter
             get
             {
                 GraphicsPath path = new GraphicsPath();
+                PointF[] points = ShapePoints;
 
-                path.AddPolygon(ShapePoints);
+                for (int i = 0; i < points.Length; i++)
+                {
+                    points[i] = RotatePoint(points[i]);
+                }
+
+                path.AddPolygon(points);
 
                 return path;
             }
