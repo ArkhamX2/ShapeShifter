@@ -156,6 +156,8 @@ namespace ShapeShifter.View
             _doDrawShapes= false;
 
             //SelectedPen.SetLineCap(LineCap.RoundAnchor, LineCap.RoundAnchor, DashCap.Round);
+
+            SelectedPen.SetLineCap(LineCap.Custom, LineCap.Custom, DashCap.Round);
         }
 
         private void comboBoxPenWidth_SelectedIndexChanged(object sender, EventArgs e)
