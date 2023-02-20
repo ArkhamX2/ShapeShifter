@@ -71,6 +71,10 @@
             this.buttonDefaultPen = new System.Windows.Forms.Button();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
             this.buttonOpen = new System.Windows.Forms.Button();
+            this.buttonRotate = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonResize = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -116,6 +120,10 @@
             // toolsPanel
             // 
             this.toolsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.toolsPanel.Controls.Add(this.textBox1);
+            this.toolsPanel.Controls.Add(this.buttonResize);
+            this.toolsPanel.Controls.Add(this.label1);
+            this.toolsPanel.Controls.Add(this.buttonRotate);
             this.toolsPanel.Controls.Add(this.buttonOpen);
             this.toolsPanel.Controls.Add(this.buttonSetColorPicker);
             this.toolsPanel.Controls.Add(this.labelCurrentColor);
@@ -268,7 +276,7 @@
             // 
             this.labelShape.AutoSize = true;
             this.labelShape.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelShape.Location = new System.Drawing.Point(173, 520);
+            this.labelShape.Location = new System.Drawing.Point(16, 520);
             this.labelShape.Name = "labelShape";
             this.labelShape.Size = new System.Drawing.Size(62, 21);
             this.labelShape.TabIndex = 31;
@@ -278,7 +286,7 @@
             // 
             this.buttonSegment.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonSegment.Image = ((System.Drawing.Image)(resources.GetObject("buttonSegment.Image")));
-            this.buttonSegment.Location = new System.Drawing.Point(204, 587);
+            this.buttonSegment.Location = new System.Drawing.Point(150, 587);
             this.buttonSegment.Name = "buttonSegment";
             this.buttonSegment.Size = new System.Drawing.Size(40, 40);
             this.buttonSegment.TabIndex = 30;
@@ -289,7 +297,7 @@
             // 
             this.buttonRectangle.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonRectangle.Image = ((System.Drawing.Image)(resources.GetObject("buttonRectangle.Image")));
-            this.buttonRectangle.Location = new System.Drawing.Point(66, 587);
+            this.buttonRectangle.Location = new System.Drawing.Point(12, 587);
             this.buttonRectangle.Name = "buttonRectangle";
             this.buttonRectangle.Size = new System.Drawing.Size(40, 40);
             this.buttonRectangle.TabIndex = 29;
@@ -300,7 +308,7 @@
             // 
             this.buttonEllipse.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonEllipse.Image = ((System.Drawing.Image)(resources.GetObject("buttonEllipse.Image")));
-            this.buttonEllipse.Location = new System.Drawing.Point(112, 587);
+            this.buttonEllipse.Location = new System.Drawing.Point(58, 587);
             this.buttonEllipse.Name = "buttonEllipse";
             this.buttonEllipse.Size = new System.Drawing.Size(40, 40);
             this.buttonEllipse.TabIndex = 28;
@@ -311,7 +319,7 @@
             // 
             this.buttonTriangle.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonTriangle.Image = ((System.Drawing.Image)(resources.GetObject("buttonTriangle.Image")));
-            this.buttonTriangle.Location = new System.Drawing.Point(158, 587);
+            this.buttonTriangle.Location = new System.Drawing.Point(104, 587);
             this.buttonTriangle.Name = "buttonTriangle";
             this.buttonTriangle.Size = new System.Drawing.Size(40, 40);
             this.buttonTriangle.TabIndex = 27;
@@ -322,7 +330,7 @@
             // 
             this.buttonCircle.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonCircle.Image = ((System.Drawing.Image)(resources.GetObject("buttonCircle.Image")));
-            this.buttonCircle.Location = new System.Drawing.Point(112, 544);
+            this.buttonCircle.Location = new System.Drawing.Point(58, 544);
             this.buttonCircle.Name = "buttonCircle";
             this.buttonCircle.Size = new System.Drawing.Size(40, 40);
             this.buttonCircle.TabIndex = 26;
@@ -333,7 +341,7 @@
             // 
             this.buttonArrow.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonArrow.Image = ((System.Drawing.Image)(resources.GetObject("buttonArrow.Image")));
-            this.buttonArrow.Location = new System.Drawing.Point(204, 544);
+            this.buttonArrow.Location = new System.Drawing.Point(150, 544);
             this.buttonArrow.Name = "buttonArrow";
             this.buttonArrow.Size = new System.Drawing.Size(40, 40);
             this.buttonArrow.TabIndex = 25;
@@ -344,7 +352,7 @@
             // 
             this.buttonTrapezoid.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonTrapezoid.Image = ((System.Drawing.Image)(resources.GetObject("buttonTrapezoid.Image")));
-            this.buttonTrapezoid.Location = new System.Drawing.Point(158, 544);
+            this.buttonTrapezoid.Location = new System.Drawing.Point(104, 544);
             this.buttonTrapezoid.Name = "buttonTrapezoid";
             this.buttonTrapezoid.Size = new System.Drawing.Size(40, 40);
             this.buttonTrapezoid.TabIndex = 24;
@@ -355,7 +363,7 @@
             // 
             this.buttonSquare.BackColor = System.Drawing.Color.WhiteSmoke;
             this.buttonSquare.Image = ((System.Drawing.Image)(resources.GetObject("buttonSquare.Image")));
-            this.buttonSquare.Location = new System.Drawing.Point(66, 544);
+            this.buttonSquare.Location = new System.Drawing.Point(12, 544);
             this.buttonSquare.Name = "buttonSquare";
             this.buttonSquare.Size = new System.Drawing.Size(40, 40);
             this.buttonSquare.TabIndex = 23;
@@ -548,6 +556,46 @@
             this.buttonOpen.UseVisualStyleBackColor = true;
             this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
             // 
+            // buttonRotate
+            // 
+            this.buttonRotate.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonRotate.Image = ((System.Drawing.Image)(resources.GetObject("buttonRotate.Image")));
+            this.buttonRotate.Location = new System.Drawing.Point(212, 544);
+            this.buttonRotate.Name = "buttonRotate";
+            this.buttonRotate.Size = new System.Drawing.Size(40, 40);
+            this.buttonRotate.TabIndex = 44;
+            this.buttonRotate.UseVisualStyleBackColor = false;
+            this.buttonRotate.Click += new System.EventHandler(this.buttonRotate_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(171, 520);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 21);
+            this.label1.TabIndex = 45;
+            this.label1.Text = "Изменить";
+            // 
+            // buttonResize
+            // 
+            this.buttonResize.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonResize.Image = ((System.Drawing.Image)(resources.GetObject("buttonResize.Image")));
+            this.buttonResize.Location = new System.Drawing.Point(212, 587);
+            this.buttonResize.Name = "buttonResize";
+            this.buttonResize.Size = new System.Drawing.Size(40, 40);
+            this.buttonResize.TabIndex = 46;
+            this.buttonResize.UseVisualStyleBackColor = false;
+            this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(12, 155);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 29);
+            this.textBox1.TabIndex = 47;
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -609,6 +657,10 @@
         private System.Windows.Forms.TextBox textBoxGreen;
         private System.Windows.Forms.TextBox textBoxRed;
         private System.Windows.Forms.Button buttonOpen;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button buttonRotate;
+        private System.Windows.Forms.Button buttonResize;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

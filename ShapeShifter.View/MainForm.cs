@@ -39,10 +39,12 @@ namespace ShapeShifter.View
         //Режимы рисования
         private bool _doMouseDraw;
         private bool _doDrawShapes;
+        private bool _doRotateShapes;
+        private bool _doResizeShapes;
         #endregion
 
         #region Properties
-        
+
         public Bitmap VoidBitmap
         {
             get 
@@ -379,6 +381,19 @@ namespace ShapeShifter.View
         #endregion
 
         #region Other
+
+        private void buttonRotate_Click(object sender, EventArgs e)
+        {
+            _doRotateShapes= true;
+            _doResizeShapes= false;
+        }
+
+        private void buttonResize_Click(object sender, EventArgs e)
+        {
+            _doRotateShapes = false;
+            _doResizeShapes = true;
+        }
+
         private void buttonClearCanvas_Click(object sender, EventArgs e)
         {
             Canvas.Image = WhitePlaneBitmap;
@@ -465,8 +480,7 @@ namespace ShapeShifter.View
                     SelectedShape.Location = cursorPosition;
                     SelectedShape.Size = new SizeF(200, 300);
                     SelectedShape.Color = SelectedColor;
-                    SelectedShape.OutlineColor = Color.Black;  
-
+                    SelectedShape.OutlineColor = Color.Black;
                 }
                 if (e.Button == MouseButtons.Right)
                 {
@@ -501,14 +515,28 @@ namespace ShapeShifter.View
                 //Изменение размера фигуры (Растягивание)
                 if (e.Button == MouseButtons.Left)
                 {
-                    SelectedShape.Size = new SizeF(
-                        e.X - SelectedShape.Location.X, 
-                        e.Y - SelectedShape.Location.Y);
+                    if (_doResizeShapes)
+                    {
+                        SelectedShape.Size = new SizeF(
+                            e.X - SelectedShape.Location.X, 
+                            e.Y - SelectedShape.Location.Y);
+                    }
 
+                    //Изменение поворота фигуры (Вращение)
+                    if (_doRotateShapes)
+                    {
+                        SelectedShape.Angle = 45;
+
+                        //SelectedShape.Angle = (float)Math.Atan(
+                        //    Math.Abs(SelectedShape.Center.Y - cursorPosition.Y) / 
+                        //    Math.Abs(SelectedShape.Center.X - cursorPosition.X));
+
+                        textBox1.Text = SelectedShape.Angle.ToString();
+                    }
                     Canvas.Invalidate();
                 }
 
-                //Изменение положения фигуры на экране
+                //Изменение положения фигуры на экране (Перетаскивание)
                 if (e.Button == MouseButtons.Right)
                 {
                     SelectedShape.Location = new PointF(
@@ -520,6 +548,7 @@ namespace ShapeShifter.View
                     Canvas.Invalidate();
 
                 }
+
             }
 
             PreviousPoint = cursorPosition;
