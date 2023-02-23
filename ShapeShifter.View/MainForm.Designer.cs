@@ -33,7 +33,6 @@
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.toolsPanel = new System.Windows.Forms.Panel();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.buttonResize = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRotate = new System.Windows.Forms.Button();
@@ -120,7 +119,6 @@
             // toolsPanel
             // 
             this.toolsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.toolsPanel.Controls.Add(this.textBox1);
             this.toolsPanel.Controls.Add(this.buttonResize);
             this.toolsPanel.Controls.Add(this.label1);
             this.toolsPanel.Controls.Add(this.buttonRotate);
@@ -166,14 +164,6 @@
             this.toolsPanel.Name = "toolsPanel";
             this.toolsPanel.Size = new System.Drawing.Size(264, 684);
             this.toolsPanel.TabIndex = 2;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(12, 155);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 29);
-            this.textBox1.TabIndex = 47;
             // 
             // buttonResize
             // 
@@ -661,7 +651,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonRotate;
         private System.Windows.Forms.Button buttonResize;
-        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
