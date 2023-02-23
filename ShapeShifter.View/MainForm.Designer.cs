@@ -33,6 +33,11 @@
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.toolsPanel = new System.Windows.Forms.Panel();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonResize = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.buttonRotate = new System.Windows.Forms.Button();
+            this.buttonOpen = new System.Windows.Forms.Button();
             this.buttonSetColorPicker = new System.Windows.Forms.Button();
             this.labelCurrentColor = new System.Windows.Forms.Label();
             this.buttonCurrentColor = new System.Windows.Forms.Button();
@@ -70,11 +75,6 @@
             this.comboBoxPenWidth = new System.Windows.Forms.ComboBox();
             this.buttonDefaultPen = new System.Windows.Forms.Button();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
-            this.buttonOpen = new System.Windows.Forms.Button();
-            this.buttonRotate = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.buttonResize = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panelCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -167,6 +167,57 @@
             this.toolsPanel.Size = new System.Drawing.Size(264, 684);
             this.toolsPanel.TabIndex = 2;
             // 
+            // textBox1
+            // 
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBox1.Location = new System.Drawing.Point(12, 155);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 29);
+            this.textBox1.TabIndex = 47;
+            // 
+            // buttonResize
+            // 
+            this.buttonResize.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonResize.Image = ((System.Drawing.Image)(resources.GetObject("buttonResize.Image")));
+            this.buttonResize.Location = new System.Drawing.Point(212, 587);
+            this.buttonResize.Name = "buttonResize";
+            this.buttonResize.Size = new System.Drawing.Size(40, 40);
+            this.buttonResize.TabIndex = 46;
+            this.buttonResize.UseVisualStyleBackColor = false;
+            this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.Location = new System.Drawing.Point(171, 520);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 21);
+            this.label1.TabIndex = 45;
+            this.label1.Text = "Изменить";
+            // 
+            // buttonRotate
+            // 
+            this.buttonRotate.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonRotate.Image = ((System.Drawing.Image)(resources.GetObject("buttonRotate.Image")));
+            this.buttonRotate.Location = new System.Drawing.Point(212, 544);
+            this.buttonRotate.Name = "buttonRotate";
+            this.buttonRotate.Size = new System.Drawing.Size(40, 40);
+            this.buttonRotate.TabIndex = 44;
+            this.buttonRotate.UseVisualStyleBackColor = false;
+            this.buttonRotate.Click += new System.EventHandler(this.buttonRotate_Click);
+            // 
+            // buttonOpen
+            // 
+            this.buttonOpen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonOpen.Location = new System.Drawing.Point(11, 12);
+            this.buttonOpen.Name = "buttonOpen";
+            this.buttonOpen.Size = new System.Drawing.Size(116, 35);
+            this.buttonOpen.TabIndex = 43;
+            this.buttonOpen.Text = "Открыть";
+            this.buttonOpen.UseVisualStyleBackColor = true;
+            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
+            // 
             // buttonSetColorPicker
             // 
             this.buttonSetColorPicker.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -176,6 +227,7 @@
             this.buttonSetColorPicker.TabIndex = 42;
             this.buttonSetColorPicker.Text = "Выбрать новый цвет";
             this.buttonSetColorPicker.UseVisualStyleBackColor = true;
+            this.buttonSetColorPicker.Click += new System.EventHandler(this.buttonSetColorPicker_Click);
             // 
             // labelCurrentColor
             // 
@@ -544,57 +596,6 @@
             this.buttonDefaultPen.TabIndex = 3;
             this.buttonDefaultPen.UseVisualStyleBackColor = false;
             this.buttonDefaultPen.Click += new System.EventHandler(this.buttonDefaultPen_Click);
-            // 
-            // buttonOpen
-            // 
-            this.buttonOpen.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonOpen.Location = new System.Drawing.Point(11, 12);
-            this.buttonOpen.Name = "buttonOpen";
-            this.buttonOpen.Size = new System.Drawing.Size(116, 35);
-            this.buttonOpen.TabIndex = 43;
-            this.buttonOpen.Text = "Открыть";
-            this.buttonOpen.UseVisualStyleBackColor = true;
-            this.buttonOpen.Click += new System.EventHandler(this.buttonOpen_Click);
-            // 
-            // buttonRotate
-            // 
-            this.buttonRotate.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonRotate.Image = ((System.Drawing.Image)(resources.GetObject("buttonRotate.Image")));
-            this.buttonRotate.Location = new System.Drawing.Point(212, 544);
-            this.buttonRotate.Name = "buttonRotate";
-            this.buttonRotate.Size = new System.Drawing.Size(40, 40);
-            this.buttonRotate.TabIndex = 44;
-            this.buttonRotate.UseVisualStyleBackColor = false;
-            this.buttonRotate.Click += new System.EventHandler(this.buttonRotate_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(171, 520);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 21);
-            this.label1.TabIndex = 45;
-            this.label1.Text = "Изменить";
-            // 
-            // buttonResize
-            // 
-            this.buttonResize.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonResize.Image = ((System.Drawing.Image)(resources.GetObject("buttonResize.Image")));
-            this.buttonResize.Location = new System.Drawing.Point(212, 587);
-            this.buttonResize.Name = "buttonResize";
-            this.buttonResize.Size = new System.Drawing.Size(40, 40);
-            this.buttonResize.TabIndex = 46;
-            this.buttonResize.UseVisualStyleBackColor = false;
-            this.buttonResize.Click += new System.EventHandler(this.buttonResize_Click);
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.textBox1.Location = new System.Drawing.Point(12, 155);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 29);
-            this.textBox1.TabIndex = 47;
             // 
             // MainForm
             // 

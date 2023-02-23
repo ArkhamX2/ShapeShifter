@@ -313,6 +313,27 @@ namespace ShapeShifter.View
                 MessageBox.Show("Неверно указаны значения цветов RGB", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        private void buttonSetColorPicker_Click(object sender, EventArgs e)
+        {
+            ColorDialog colorDialog = new ColorDialog();
+            colorDialog.AllowFullOpen = true;
+            colorDialog.ShowHelp = true;
+            colorDialog.Color= SelectedColor;
+
+            if(colorDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    SelectedColor = colorDialog.Color;
+                    buttonCurrentColor.BackColor = SelectedColor;
+                }
+                catch
+                {
+                    MessageBox.Show("Не удалось выбрать цвет", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+
+        }
 
         #endregion
 
@@ -690,7 +711,7 @@ namespace ShapeShifter.View
 
             return shape;
         }
-        #endregion
 
+        #endregion
     }
 }
