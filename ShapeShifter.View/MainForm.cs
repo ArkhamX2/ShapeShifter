@@ -36,13 +36,13 @@ namespace ShapeShifter.View
         private Color _selectedColor;
         private Pen _selectedPen;
         private int _selectedPenWidth;
+        private SizeF _selectedShapeCurrentSize;
 
         //Режимы рисования
         private bool _doMouseDraw;
         private bool _doDrawShapes;
         private bool _doRotateShapes;
         private bool _doResizeShapes;
-        private bool _doInteractions;
 
         #endregion
 
@@ -110,6 +110,15 @@ namespace ShapeShifter.View
             set { _selectedShape = value; }
         }
 
+        /// <summary>
+        /// Доступ к размеру выбранной фигуры
+        /// </summary>
+        public SizeF SelectedShapeSize
+        {
+            get { return _selectedShapeCurrentSize; }
+            set { _selectedShapeCurrentSize = value; }
+        }
+
         #endregion
 
         #region Initialization
@@ -131,6 +140,7 @@ namespace ShapeShifter.View
             Canvas.Image = WhitePlaneBitmap;
 
             SelectedShape = _shapes[3];
+            SelectedShapeSize = new SizeF(200,300);
 
             SelectedColor = Color.Red;
 
@@ -172,7 +182,7 @@ namespace ShapeShifter.View
             SetShape();
 
             SelectedPen = new Pen(SelectedColor, SelectedPenWidth);
-            SelectedPen.SetLineCap(LineCap.Custom, LineCap.Custom, DashCap.Flat);
+            SelectedPen.SetLineCap(LineCap.Custom, LineCap.Custom, DashCap.Round);
 
             SwitchToMousePaintMode();
         }
@@ -412,12 +422,17 @@ namespace ShapeShifter.View
         private void InitializeShape(Shape shape)
         {
             SelectedShape = shape;
+
             SelectedShape.Size = new SizeF(200, 300);
+            SelectedShape.Angle = 0;
+
+            SelectedShapeSize = SelectedShape.Size;
+
             SelectedShape.Color = SelectedColor;
             SelectedShape.OutlineColor = Color.Black;
+
             _doResizeShapes = false;
             _doRotateShapes = false;
-            _doInteractions = true;
         }
 
         private void SwitchToShapePaintMode()
@@ -521,12 +536,16 @@ namespace ShapeShifter.View
         {
             Point cursorPosition = GetCurrentCursorPosition();
 
+            //Ставит точки на холсте на месте кликов
+            //Graphics g = GetSmoothGraphicsFromCanvas();
+            //g.DrawEllipse(SelectedPen,cursorPosition.X,cursorPosition.Y,10,10);
+
             if (_doDrawShapes && SelectedShape != null)
             {
                 if (e.Button == MouseButtons.Left)
                 {
-                    SelectedShape.Location = cursorPosition;
-                    Canvas.Invalidate();
+                    MouseDownLocation = e.Location;
+                    SelectedShapeSize = SelectedShape.Size;
                 }
                 if (e.Button == MouseButtons.Right)
                 {
@@ -602,8 +621,8 @@ namespace ShapeShifter.View
         private SizeF GetCurrentSize(MouseEventArgs e)
         {
             //Размером фигуры становится удалённость курсора относительно её центра
-            float x = e.X - SelectedShape.Location.X;
-            float y = e.Y - SelectedShape.Location.Y;
+            float x = e.X - MouseDownLocation.X + SelectedShapeSize.Width;
+            float y = e.Y - MouseDownLocation.Y + SelectedShapeSize.Height;
 
             return new SizeF(x, y);
         }
