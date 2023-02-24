@@ -537,8 +537,8 @@ namespace ShapeShifter.View
             Point cursorPosition = GetCurrentCursorPosition();
 
             //Ставит точки на холсте на месте кликов
-            //Graphics g = GetSmoothGraphicsFromCanvas();
-            //g.DrawEllipse(SelectedPen,cursorPosition.X,cursorPosition.Y,10,10);
+            Graphics g = GetSmoothGraphicsFromCanvas();
+            g.DrawEllipse(SelectedPen, cursorPosition.X, cursorPosition.Y, 10, 10);
 
             if (_doDrawShapes && SelectedShape != null)
             {
@@ -621,7 +621,7 @@ namespace ShapeShifter.View
         private SizeF GetCurrentSize(MouseEventArgs e)
         {
             //Размером фигуры становится удалённость курсора относительно её центра
-            float x = e.X - MouseDownLocation.X + SelectedShapeSize.Width;
+            float x = e.X  - MouseDownLocation.X + SelectedShapeSize.Width;
             float y = e.Y - MouseDownLocation.Y + SelectedShapeSize.Height;
 
             return new SizeF(x, y);
@@ -686,6 +686,13 @@ namespace ShapeShifter.View
                 {
                     e.Graphics.FillPath(brush, SelectedShape.GraphicsPath);
                     e.Graphics.DrawPath(pen, SelectedShape.GraphicsPath);
+                }
+
+                using (Pen pen = new Pen(Color.Gray, Shape.DefaultOutlineWidth))
+                {
+                    pen.DashStyle = DashStyle.Dash;
+
+                    e.Graphics.DrawRectangles(pen, new RectangleF[] {SelectedShape.BoundingBox });
                 }
             }
 
