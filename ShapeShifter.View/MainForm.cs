@@ -460,6 +460,8 @@ namespace ShapeShifter.View
         private void buttonClearCanvas_Click(object sender, EventArgs e)
         {
             Canvas.Image = WhitePlaneBitmap;
+            SelectedShape = _shapes[3];
+            SelectedShapeSize = new SizeF(200, 300);
         }
 
         private void buttonOpen_Click(object sender, EventArgs e)
@@ -537,8 +539,8 @@ namespace ShapeShifter.View
             Point cursorPosition = GetCurrentCursorPosition();
 
             //Ставит точки на холсте на месте кликов
-            Graphics g = GetSmoothGraphicsFromCanvas();
-            g.DrawEllipse(SelectedPen, cursorPosition.X, cursorPosition.Y, 10, 10);
+            //Graphics g = GetSmoothGraphicsFromCanvas();
+            //g.DrawEllipse(SelectedPen, cursorPosition.X, cursorPosition.Y, 10, 10);
 
             if (_doDrawShapes && SelectedShape != null)
             {
