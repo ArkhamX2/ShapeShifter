@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
-namespace ShapeShifter
+namespace ShapeShifter.Shape
 {
     /// <summary>
     /// Стрелка
     /// </summary>
-    public class ArrowShape : Shape
+    public class ArrowShape : BaseShape
     {
         /// <summary>
         /// Пустой конструктор

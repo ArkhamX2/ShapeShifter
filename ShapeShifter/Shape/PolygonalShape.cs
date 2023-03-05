@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Drawing;
 
-namespace ShapeShifter
+namespace ShapeShifter.Shape
 {
     /// <summary>
     /// Настраиваемая полигональная фигура
     /// </summary>
-    public class PolygonalShape : Shape
+    public class PolygonalShape : BaseShape
     {
         /// <summary>
         /// Минимальное количество граней

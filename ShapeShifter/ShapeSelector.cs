@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using ShapeShifter.Shape;
 
 namespace ShapeShifter
 {
@@ -26,7 +27,7 @@ namespace ShapeShifter
         /// <summary>
         /// Доступ к списку фигур
         /// </summary>
-        public static List<Shape> ShapeList => new List<Shape>()
+        public static List<BaseShape> ShapeList => new List<BaseShape>()
         {
             new ArrowShape(),
             new RectangleShape(),
@@ -42,9 +43,9 @@ namespace ShapeShifter
         /// <param name="type">Тип фигуры</param>
         /// <returns>Фигура</returns>
         /// <exception cref="ArgumentException"></exception>
-        public static Shape GetShape(ShapeType type)
+        public static BaseShape GetShape(ShapeType type)
         {
-            foreach (Shape shape in ShapeList)
+            foreach (BaseShape shape in ShapeList)
             {
                 if (shape.Type != type)
                 {
@@ -63,9 +64,9 @@ namespace ShapeShifter
         /// <param name="type">Тип фигуры</param>
         /// <param name="location">Позиция</param>
         /// <returns>Фигура</returns>
-        public static Shape GetShape(ShapeType type, PointF location)
+        public static BaseShape GetShape(ShapeType type, PointF location)
         {
-            Shape shape = GetShape(type);
+            BaseShape shape = GetShape(type);
 
             shape.Location = location;
 
@@ -79,9 +80,9 @@ namespace ShapeShifter
         /// <param name="location">Позиция</param>
         /// <param name="size">Размер</param>
         /// <returns>Фигура</returns>
-        public static Shape GetShape(ShapeType type, PointF location, SizeF size)
+        public static BaseShape GetShape(ShapeType type, PointF location, SizeF size)
         {
-            Shape shape = GetShape(type, location);
+            BaseShape shape = GetShape(type, location);
 
             shape.Size = size;
 

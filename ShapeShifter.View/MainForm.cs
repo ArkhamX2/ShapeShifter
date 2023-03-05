@@ -6,6 +6,7 @@ using System.Drawing.Imaging;
 using System.IO;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ShapeShifter.Shape;
 
 namespace ShapeShifter.View
 {
@@ -32,7 +33,7 @@ namespace ShapeShifter.View
         private Bitmap _whitePlaneBitmap;
 
         //Выбранные инструменты
-        private Shape _selectedShape;
+        private BaseShape _selectedShape;
         private Color _selectedColor;
         private Pen _selectedPen;
         private int _selectedPenWidth;
@@ -104,7 +105,7 @@ namespace ShapeShifter.View
         /// <summary>
         /// Доступ к выбранной фигуре
         /// </summary>
-        public Shape SelectedShape
+        public BaseShape SelectedShape
         {
             get { return _selectedShape; }
             set { _selectedShape = value; }
@@ -399,7 +400,7 @@ namespace ShapeShifter.View
         /// <summary>
         /// Указывает для выбранной фигуры значения по умолчанию:
         /// </summary>
-        private void InitializeShape(Shape shape)
+        private void InitializeShape(BaseShape shape)
         {
             SelectedShape = shape;
 
@@ -670,7 +671,7 @@ namespace ShapeShifter.View
                     e.Graphics.DrawPath(pen, SelectedShape.GraphicsPath);
                 }
 
-                using (Pen pen = new Pen(Color.Gray, Shape.DefaultOutlineWidth))
+                using (Pen pen = new Pen(Color.Gray, BaseShape.DefaultOutlineWidth))
                 {
                     pen.DashStyle = DashStyle.Dash;
 
@@ -719,9 +720,9 @@ namespace ShapeShifter.View
         /// </summary>
         /// <param name="graphics">Графика</param>
         /// <param name="shape">Фигура</param>
-        private void DrawBoundingBox(Graphics graphics, Shape shape)
+        private void DrawBoundingBox(Graphics graphics, BaseShape shape)
         {
-            using (Pen pen = new Pen(Color.Gray, Shape.DefaultOutlineWidth))
+            using (Pen pen = new Pen(Color.Gray, BaseShape.DefaultOutlineWidth))
             {
                 pen.DashStyle = DashStyle.Dash;
 

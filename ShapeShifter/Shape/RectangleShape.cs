@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
 
-namespace ShapeShifter
+namespace ShapeShifter.Shape
 {
     /// <summary>
     /// Прямоугольник
     /// </summary>
-    public class RectangleShape : Shape
+    public class RectangleShape : BaseShape
     {
         /// <summary>
         /// Пустой конструктор

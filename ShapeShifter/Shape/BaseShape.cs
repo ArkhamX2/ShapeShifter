@@ -1,11 +1,11 @@
 ﻿using System.Drawing;
 
-namespace ShapeShifter
+namespace ShapeShifter.Shape
 {
     /// <summary>
     /// Фигура в прямоугольном регионе
     /// </summary>
-    public abstract class Shape : Region
+    public abstract class BaseShape : Region
     {
         /// <summary>
         /// Толщина линии по-умолчанию
@@ -40,7 +40,7 @@ namespace ShapeShifter
         /// <summary>
         /// Пустой конструктор
         /// </summary>
-        public Shape()
+        public BaseShape()
         {
             // PASS
         }
@@ -49,7 +49,7 @@ namespace ShapeShifter
         /// Конструктор
         /// </summary>
         /// <param name="location">Позиция</param>
-        protected Shape(PointF location) : base(location)
+        protected BaseShape(PointF location) : base(location)
         {
             // PASS
         }

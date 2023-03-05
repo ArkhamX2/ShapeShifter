@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
-namespace ShapeShifter
+namespace ShapeShifter.Shape
 {
     /// <summary>
     /// Трапеция
     /// </summary>
-    public class TrapezoidShape : Shape
+    public class TrapezoidShape : BaseShape
     {
         /// <summary>
         /// Пустой конструктор

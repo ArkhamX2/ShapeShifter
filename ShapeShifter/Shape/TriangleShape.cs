@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Drawing;
+﻿using System.Drawing;
 
-namespace ShapeShifter
+namespace ShapeShifter.Shape
 {
     /// <summary>
     /// Треугольник
     /// </summary>
-    public class TriangleShape : Shape
+    public class TriangleShape : BaseShape
     {
         /// <summary>
         /// Пустой конструктор
