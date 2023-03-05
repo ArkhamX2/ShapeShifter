@@ -5,6 +5,20 @@ using System.Drawing;
 namespace ShapeShifter
 {
     /// <summary>
+    /// Тип фигуры
+    /// </summary>
+    public enum ShapeType
+    {
+        None,
+        Rectangle,
+        Square,
+        Triangle,
+        Trapezoid,
+        Arrow,
+        Polygonal
+    }
+
+    /// <summary>
     /// Класс для получения новых фигур
     /// </summary>
     public static class ShapeSelector
