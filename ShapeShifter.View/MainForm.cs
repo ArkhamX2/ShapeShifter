@@ -671,19 +671,15 @@ namespace ShapeShifter.View
                     e.Graphics.DrawPath(pen, SelectedShape.GraphicsPath);
                 }
 
-                using (Pen pen = new Pen(Color.Gray, BaseShape.DefaultOutlineWidth))
-                {
-                    pen.DashStyle = DashStyle.Dash;
-
-                    e.Graphics.DrawRectangles(pen, new RectangleF[] {SelectedShape.BoundingBox });
-                }
+                DrawBoundingBox(e.Graphics, SelectedShape);
+                DrawAxisAlignedBoundingBox(e.Graphics, SelectedShape);
             }
-
         }
 
         #endregion
 
         #region DrawMethods
+
         /// <summary>
         /// Метод создает отпечаток фигуры на полотне,
         /// то есть сохраняет и применяет изменения на рисунке, 
@@ -702,6 +698,10 @@ namespace ShapeShifter.View
             }
             Canvas.Invalidate();
         }
+
+        /// <summary>
+        /// Нарисовать выбранную фигуру
+        /// </summary>
         private void DrawSelectedShape()
         {
             Graphics g = Graphics.FromImage(Canvas.Image);
@@ -726,9 +726,25 @@ namespace ShapeShifter.View
             {
                 pen.DashStyle = DashStyle.Dash;
 
-                graphics.DrawRectangles(pen, new RectangleF[] { shape.BoundingBox });
+                graphics.DrawPath(pen, shape.BoundingBox);
             }
         }
+
+        /// <summary>
+        /// Нарисовать параллельную осям координат границу вокруг фигуры пунктиром
+        /// </summary>
+        /// <param name="graphics">Графика</param>
+        /// <param name="shape">Фигура</param>
+        private void DrawAxisAlignedBoundingBox(Graphics graphics, BaseShape shape)
+        {
+            using (Pen pen = new Pen(Color.Gray, BaseShape.DefaultOutlineWidth))
+            {
+                pen.DashStyle = DashStyle.Dash;
+
+                graphics.DrawPath(pen, shape.AxisAlignedBoundingBox);
+            }
+        }
+
         #endregion
     }
 }

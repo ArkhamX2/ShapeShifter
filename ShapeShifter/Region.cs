@@ -85,27 +85,54 @@ namespace ShapeShifter
         }
 
         /// <summary>
-        /// Представление границ с учетом поворота в виде структуры прямоугольника,
-        /// параллельного осям координат (AABB)
+        /// Порядок графического построения параллельных осям координат границ
+        /// с учетом поворота (AABB)
         /// </summary>
-        public virtual RectangleF BoundingBox
+        public virtual GraphicsPath AxisAlignedBoundingBox
         {
             get
             {
-                RectangleF box = new RectangleF(Location, Size);
+                GraphicsPath path = new GraphicsPath();
+                PointF[] points = RotatePoints(ShapePoints);
+
+                float left = float.MaxValue;
+                float top = float.MaxValue;
+                float right = float.MinValue;
+                float bottom = float.MinValue;
+
+                // Определение границ
+                for (int i = 0; i < points.Length; i++)
+                {
+                    left = Math.Min(left, points[i].X);
+                    top = Math.Min(top, points[i].Y);
+                    right = Math.Max(right, points[i].X);
+                    bottom = Math.Max(bottom, points[i].Y);
+                }
+
+                path.AddPolygon(new PointF[]
+                {
+                    new PointF(left, top),
+                    new PointF(right, top),
+                    new PointF(right, bottom),
+                    new PointF(left, bottom)
+                });
+
+                return path;
+            }
+        }
+
+        /// <summary>
+        /// Порядок графического построения границ с учетом поворота (BB)
+        /// </summary>
+        public GraphicsPath BoundingBox
+        {
+            get
+            {
+                GraphicsPath path = new GraphicsPath();
                 
-                PointF topLeft     = RotatePoint(new PointF(box.X, box.Y));
-                PointF topRight    = RotatePoint(new PointF(box.Right, box.Y));
-                PointF bottomLeft  = RotatePoint(new PointF(box.X, box.Bottom));
-                PointF bottomRight = RotatePoint(new PointF(box.Right, box.Bottom));
+                path.AddPolygon(RotatePoints(RegionPoints));
 
-                // Определение границы
-                float Left = Math.Min(topLeft.X, Math.Min(topRight.X, Math.Min(bottomLeft.X, bottomRight.X)));
-                float Top = Math.Min(topLeft.Y, Math.Min(topRight.Y, Math.Min(bottomLeft.Y, bottomRight.Y)));
-                float Right = Math.Max(topLeft.X, Math.Max(topRight.X, Math.Max(bottomLeft.X, bottomRight.X)));
-                float Bottom = Math.Max(topLeft.Y, Math.Max(topRight.Y, Math.Max(bottomLeft.Y, bottomRight.Y)));
-
-                return RectangleF.FromLTRB(Left, Top, Right, Bottom);
+                return path;
             }
         }
 
@@ -117,16 +144,31 @@ namespace ShapeShifter
             get
             {
                 GraphicsPath path = new GraphicsPath();
-                PointF[] points = ShapePoints;
 
-                for (int i = 0; i < points.Length; i++)
-                {
-                    points[i] = RotatePoint(points[i]);
-                }
-
-                path.AddPolygon(points);
+                path.AddPolygon(RotatePoints(ShapePoints));
 
                 return path;
+            }
+        }
+
+        /// <summary>
+        /// Представление прямоугольного региона
+        /// в виде массива точек в порядке построения
+        /// </summary>
+        protected virtual PointF[] RegionPoints
+        {
+            get
+            {
+                RectangleF box = new RectangleF(Location, Size);
+                PointF[] result = new PointF[]
+                {
+                    new PointF(box.Left, box.Top),
+                    new PointF(box.Right, box.Top),
+                    new PointF(box.Right, box.Bottom),
+                    new PointF(box.Left, box.Bottom)
+                };
+
+                return result;
             }
         }
 
@@ -138,17 +180,7 @@ namespace ShapeShifter
         {
             get
             {
-                RectangleF box = new RectangleF(Location, Size);
-
-                PointF[] result = new PointF[]
-                {
-                    new PointF(box.Left, box.Top),
-                    new PointF(box.Right, box.Top),
-                    new PointF(box.Right, box.Bottom),
-                    new PointF(box.Left, box.Bottom)
-                };
-
-                return result;
+                return RegionPoints;
             }
         }
 
@@ -168,6 +200,21 @@ namespace ShapeShifter
             float resultY = (float)(center.Y + Math.Sin(Angle) * virtualX + Math.Cos(Angle) * virtualY);
 
             return new PointF(resultX, resultY);
+        }
+
+        /// <summary>
+        /// Повернуть точки относительно центра региона
+        /// </summary>
+        /// <param name="points">Точки в исходном положении</param>
+        /// <returns>Новые точки со смещенными координатами</returns>
+        protected PointF[] RotatePoints(PointF[] points)
+        {
+            for (int i = 0; i < points.Length; i++)
+            {
+                points[i] = RotatePoint(points[i]);
+            }
+
+            return points;
         }
     }
 }
