@@ -139,7 +139,7 @@ namespace ShapeShifter.View
         {
             Canvas.Image = WhitePlaneBitmap;
 
-            SelectedShape = _shapes[3];
+            SelectedShape = ShapeSelector.GetShape(ShapeType.Rectangle);
             SelectedShapeSize = new SizeF(200,300);
 
             SelectedColor = Color.Red;
@@ -149,30 +149,6 @@ namespace ShapeShifter.View
             SelectedPen.SetLineCap(LineCap.Custom, LineCap.Custom, DashCap.Flat);
         }
 
-        /// <summary>
-        /// Генератор случайных чисел
-        /// </summary>
-        private static readonly Random _random = new Random();
-
-        /// <summary>
-        /// Массив всех доступных фигур
-        /// </summary>
-        private readonly Shape[] _shapes = new Shape[]
-        {
-            new ArrowShape(),
-            new CircleShape(), // TODO: Зачем круг если есть настраиваемый эллипс?
-            new EllipseShape(),
-            new RectangleShape(),
-            new SquareShape(), // TODO: Зачем квадрат если есть настраиваемый прямоугольник?
-            new TrapezoidShape(),
-            new TriangleShape(), // TODO: Более "правильный" треугольник  по сравнению с полигональным вариантом.
-            new PolygonalShape(3),
-            new PolygonalShape(4),
-            new PolygonalShape(5),
-            new PolygonalShape(6),
-            new PolygonalShape(7),
-            new PolygonalShape(8)
-        };
         #endregion
 
         #region Tools
@@ -365,55 +341,55 @@ namespace ShapeShifter.View
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(_shapes[4]);
+            InitializeShape(ShapeSelector.GetShape(ShapeType.Square));
         }
         private void buttonCircle_Click(object sender, EventArgs e)
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(_shapes[1]);
+            InitializeShape(ShapeSelector.GetShape(ShapeType.Circle));
         }
 
         private void buttonTrapezoid_Click(object sender, EventArgs e)
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(_shapes[5]);
+            InitializeShape(ShapeSelector.GetShape(ShapeType.Trapezoid));
         }
 
         private void buttonArrow_Click(object sender, EventArgs e)
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(_shapes[0]);
+            InitializeShape(ShapeSelector.GetShape(ShapeType.Arrow));
         }
 
         private void buttonRectangle_Click(object sender, EventArgs e)
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(_shapes[3]);
+            InitializeShape(ShapeSelector.GetShape(ShapeType.Rectangle));
         }
 
         private void buttonEllipse_Click(object sender, EventArgs e)
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(_shapes[2]);
+            InitializeShape(ShapeSelector.GetShape(ShapeType.Ellipse));
         }
 
         private void buttonTriangle_Click(object sender, EventArgs e)
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(_shapes[6]);
+            InitializeShape(ShapeSelector.GetShape(ShapeType.Triangle));
         }
 
         private void buttonSegment_Click(object sender, EventArgs e)
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(_shapes[7]);
+            InitializeShape(ShapeSelector.GetPolygonalShape(4));
         }
 
         /// <summary>
@@ -460,7 +436,7 @@ namespace ShapeShifter.View
         private void buttonClearCanvas_Click(object sender, EventArgs e)
         {
             Canvas.Image = WhitePlaneBitmap;
-            SelectedShape = _shapes[3];
+            SelectedShape = ShapeSelector.GetShape(ShapeType.Rectangle);
             SelectedShapeSize = new SizeF(200, 300);
         }
 
@@ -748,36 +724,6 @@ namespace ShapeShifter.View
                 graphics.DrawRectangles(pen, new RectangleF[] { shape.BoundingBox });
             }
         }
-        #endregion
-
-        #region Random
-        /// <summary>
-        /// Получить случайный цвет
-        /// </summary>
-        /// <returns>Случайный цвет</returns>
-        private Color RandomColor()
-        {
-            return Color.FromArgb(_random.Next(256), _random.Next(256), _random.Next(256));
-        }
-
-        /// <summary>
-        /// Получить случайную фигуру
-        /// </summary>
-        /// <param name="location">Позиция</param>
-        /// <param name="size">Размер</param>
-        /// <returns>Случайная фигура</returns>
-        private Shape RandomShape(PointF location, SizeF size)
-        {
-            Shape shape = _shapes[_random.Next(_shapes.Length)];
-
-            shape.Location = location;
-            shape.Size = size;
-            shape.Color = RandomColor();
-            shape.OutlineColor = Color.Black;
-
-            return shape;
-        }
-
         #endregion
     }
 }

@@ -9,15 +9,33 @@ namespace ShapeShifter
     public class PolygonalShape : Shape
     {
         /// <summary>
+        /// Минимальное количество граней
+        /// </summary>
+        public const int SideCountMin = 3;
+
+        /// <summary>
+        /// Максимальное количество граней
+        /// </summary>
+        public const int SideCountMax = 64;
+
+        /// <summary>
         /// Количество граней
         /// </summary>
-        private int _sideCount;
+        private int _sideCount = SideCountMin;
 
         /// <summary>
         /// Пустой конструктор
         /// </summary>
-        /// <param name="location">Позиция</param>
-        public PolygonalShape(int sideCount) : base()
+        public PolygonalShape() : base()
+        {
+            // PASS.
+        }
+
+        /// <summary>
+        /// Конструктор
+        /// </summary>
+        /// <param name="sideCount">Количество граней</param>
+        public PolygonalShape(int sideCount) : this()
         {
             SideCount = sideCount;
         }
@@ -44,7 +62,7 @@ namespace ShapeShifter
             get => _sideCount;
             set
             {
-                if (value <= 2 || value > 32)
+                if (value < SideCountMin || value > SideCountMax)
                 {
                     throw new ArgumentOutOfRangeException("Invalid SideCount");
                 }
