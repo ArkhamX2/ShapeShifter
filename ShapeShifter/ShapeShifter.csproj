@@ -43,8 +43,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArrowShape.cs" />
-    <Compile Include="CircleShape.cs" />
-    <Compile Include="EllipseShape.cs" />
     <Compile Include="PolygonalShape.cs" />
     <Compile Include="RectangleShape.cs" />
     <Compile Include="Region.cs" />

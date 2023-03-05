@@ -5,32 +5,25 @@ using System.Drawing;
 namespace ShapeShifter
 {
     /// <summary>
-    /// Класс для получения фигур
+    /// Класс для получения новых фигур
     /// </summary>
     public static class ShapeSelector
     {
         /// <summary>
-        /// Список фигур
+        /// Доступ к списку фигур
         /// </summary>
-        private static readonly List<Shape> _shapeList = new List<Shape>()
+        public static List<Shape> ShapeList => new List<Shape>()
         {
             new ArrowShape(),
-            new CircleShape(), // TODO: Зачем круг если есть настраиваемый эллипс?
-            new EllipseShape(),
             new RectangleShape(),
             new SquareShape(), // TODO: Зачем квадрат если есть настраиваемый прямоугольник?
             new TrapezoidShape(),
-            new TriangleShape(), // TODO: Более "правильный" треугольник  по сравнению с полигональным вариантом
+            new TriangleShape(), // TODO: Заменить полигоном или сделать настраиваемым?
             new PolygonalShape()
         };
 
         /// <summary>
-        /// Доступ к списку фигур
-        /// </summary>
-        public static List<Shape> ShapeList => _shapeList;
-
-        /// <summary>
-        /// Получить фигуру
+        /// Получить новую фигуру
         /// </summary>
         /// <param name="type">Тип фигуры</param>
         /// <returns>Фигура</returns>
@@ -51,7 +44,7 @@ namespace ShapeShifter
         }
 
         /// <summary>
-        /// Получить фигуру
+        /// Получить новую фигуру
         /// </summary>
         /// <param name="type">Тип фигуры</param>
         /// <param name="location">Позиция</param>
@@ -66,7 +59,7 @@ namespace ShapeShifter
         }
 
         /// <summary>
-        /// Получить фигуру
+        /// Получить новую фигуру
         /// </summary>
         /// <param name="type">Тип фигуры</param>
         /// <param name="location">Позиция</param>
@@ -82,7 +75,7 @@ namespace ShapeShifter
         }
 
         /// <summary>
-        /// Получить настраиваемую полигональную фигуру
+        /// Получить новую настраиваемую полигональную фигуру
         /// </summary>
         /// <returns>Настраиваемая полигональная фигура</returns>
         public static PolygonalShape GetPolygonalShape()
@@ -91,7 +84,7 @@ namespace ShapeShifter
         }
 
         /// <summary>
-        /// Получить настраиваемую полигональную фигуру
+        /// Получить новую настраиваемую полигональную фигуру
         /// </summary>
         /// <param name="sideCount">Количество граней</param>
         /// <returns>Настраиваемая полигональная фигура</returns>
@@ -105,7 +98,7 @@ namespace ShapeShifter
         }
 
         /// <summary>
-        /// Получить настраиваемую полигональную фигуру
+        /// Получить новую настраиваемую полигональную фигуру
         /// </summary>
         /// <param name="sideCount">Количество граней</param>
         /// <param name="location">Позиция</param>
@@ -120,7 +113,7 @@ namespace ShapeShifter
         }
 
         /// <summary>
-        /// Получить настраиваемую полигональную фигуру
+        /// Получить новую настраиваемую полигональную фигуру
         /// </summary>
         /// <param name="sideCount">Количество граней</param>
         /// <param name="location">Позиция</param>

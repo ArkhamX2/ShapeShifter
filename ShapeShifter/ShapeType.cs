@@ -11,8 +11,6 @@
         Triangle,
         Trapezoid,
         Arrow,
-        Ellipse,
-        Circle,
         Polygonal
     }
 }

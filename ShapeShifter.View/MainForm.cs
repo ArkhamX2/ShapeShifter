@@ -347,7 +347,9 @@ namespace ShapeShifter.View
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(ShapeSelector.GetShape(ShapeType.Circle));
+
+            // Полигональный круг из максимального количества граней
+            InitializeShape(ShapeSelector.GetPolygonalShape(PolygonalShape.SideCountMax));
         }
 
         private void buttonTrapezoid_Click(object sender, EventArgs e)
@@ -375,7 +377,9 @@ namespace ShapeShifter.View
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(ShapeSelector.GetShape(ShapeType.Ellipse));
+
+            // Полигональный круг из максимального количества граней
+            InitializeShape(ShapeSelector.GetPolygonalShape(PolygonalShape.SideCountMax));
         }
 
         private void buttonTriangle_Click(object sender, EventArgs e)
@@ -389,7 +393,7 @@ namespace ShapeShifter.View
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(ShapeSelector.GetPolygonalShape(4));
+            InitializeShape(ShapeSelector.GetPolygonalShape());
         }
 
         /// <summary>
