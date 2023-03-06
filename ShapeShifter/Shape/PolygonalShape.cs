@@ -11,7 +11,7 @@ namespace ShapeShifter.Shape
         /// <summary>
         /// Минимальное количество граней
         /// </summary>
-        public const int SideCountMin = 4;
+        public const int SideCountMin = 3;
 
         /// <summary>
         /// Максимальное количество граней

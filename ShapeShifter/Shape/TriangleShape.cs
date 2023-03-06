@@ -42,7 +42,7 @@ namespace ShapeShifter.Shape
                 PointF[] result = new PointF[]
                 {
                     new PointF(box.Left, box.Top),
-                    new PointF(box.Right, box.Top + box.Height / 2),
+                    new PointF(box.Right, box.Top),
                     new PointF(box.Left, box.Bottom)
                 };
 

@@ -69,13 +69,18 @@ namespace ShapeShifter
         }
 
         /// <summary>
+        /// Представление в виде структуры прямоугольника
+        /// </summary>
+        public RectangleF Box => new RectangleF(Location, Size);
+
+        /// <summary>
         /// Центр
         /// </summary>
         public PointF Center
         {
             get
             {
-                RectangleF box = new RectangleF(Location, Size);
+                RectangleF box = Box;
 
                 float x = box.X + box.Width / 2;
                 float y = box.Y + box.Height / 2;
@@ -159,7 +164,7 @@ namespace ShapeShifter
         {
             get
             {
-                RectangleF box = new RectangleF(Location, Size);
+                RectangleF box = Box;
                 PointF[] result = new PointF[]
                 {
                     new PointF(box.Left, box.Top),
@@ -215,6 +220,21 @@ namespace ShapeShifter
             }
 
             return points;
+        }
+
+        /// <summary>
+        /// Получить позицию через центр
+        /// </summary>
+        /// <param name="center">Центр</param>
+        /// <returns>Позиция</returns>
+        public PointF LocationFromCenter(PointF center)
+        {
+            RectangleF box = Box;
+
+            float x = box.X - box.Width / 2;
+            float y = box.Y - box.Height / 2;
+
+            return new PointF(x, y);
         }
     }
 }
