@@ -49,7 +49,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shape\BaseShape.cs" />
     <Compile Include="ShapeSelector.cs" />
-    <Compile Include="Shape\SquareShape.cs" />
     <Compile Include="Shape\TrapezoidShape.cs" />
     <Compile Include="Shape\TriangleShape.cs" />
   </ItemGroup>

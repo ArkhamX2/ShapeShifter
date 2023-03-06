@@ -12,7 +12,6 @@ namespace ShapeShifter
     {
         None,
         Rectangle,
-        Square,
         Triangle,
         Trapezoid,
         Arrow,
@@ -31,9 +30,8 @@ namespace ShapeShifter
         {
             new ArrowShape(),
             new RectangleShape(),
-            new SquareShape(), // TODO: Зачем квадрат если есть настраиваемый прямоугольник?
             new TrapezoidShape(),
-            new TriangleShape(), // TODO: Заменить полигоном или сделать настраиваемым?
+            new TriangleShape(),
             new PolygonalShape()
         };
 

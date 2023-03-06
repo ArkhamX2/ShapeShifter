@@ -342,7 +342,7 @@ namespace ShapeShifter.View
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(ShapeSelector.GetShape(ShapeType.Square));
+            InitializeShape(ShapeSelector.GetShape(ShapeType.Rectangle));
         }
         private void buttonCircle_Click(object sender, EventArgs e)
         {
