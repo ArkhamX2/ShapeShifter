@@ -40,7 +40,7 @@ namespace ShapeShifter.Shape
         /// <summary>
         /// Пустой конструктор
         /// </summary>
-        public BaseShape()
+        public BaseShape() : base()
         {
             // PASS
         }

@@ -10,7 +10,7 @@ namespace ShapeShifter.Shape
         /// <summary>
         /// Пустой конструктор
         /// </summary>
-        public ArrowShape()
+        public ArrowShape() : base()
         {
             // PASS
         }

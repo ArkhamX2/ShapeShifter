@@ -10,7 +10,7 @@ namespace ShapeShifter.Shape
         /// <summary>
         /// Пустой конструктор
         /// </summary>
-        public TriangleShape()
+        public TriangleShape() : base()
         {
             // PASS
         }

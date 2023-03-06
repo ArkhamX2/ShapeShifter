@@ -10,7 +10,7 @@ namespace ShapeShifter.Shape
         /// <summary>
         /// Пустой конструктор
         /// </summary>
-        public TrapezoidShape()
+        public TrapezoidShape() : base()
         {
             // PASS
         }
