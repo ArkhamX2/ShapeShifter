@@ -53,8 +53,10 @@
             this.buttonRectangle = new System.Windows.Forms.Button();
             this.buttonEllipse = new System.Windows.Forms.Button();
             this.buttonTriangle = new System.Windows.Forms.Button();
+            this.buttonCircle = new System.Windows.Forms.Button();
             this.buttonArrow = new System.Windows.Forms.Button();
             this.buttonTrapezoid = new System.Windows.Forms.Button();
+            this.buttonSquare = new System.Windows.Forms.Button();
             this.labelPenColor = new System.Windows.Forms.Label();
             this.buttonSavePicture = new System.Windows.Forms.Button();
             this.buttonClearCanvas = new System.Windows.Forms.Button();
@@ -72,8 +74,6 @@
             this.comboBoxPenWidth = new System.Windows.Forms.ComboBox();
             this.buttonDefaultPen = new System.Windows.Forms.Button();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
-            this.buttonCircle = new System.Windows.Forms.Button();
-            this.buttonSquare = new System.Windows.Forms.Button();
             this.panelCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -368,6 +368,17 @@
             this.buttonTriangle.UseVisualStyleBackColor = false;
             this.buttonTriangle.Click += new System.EventHandler(this.buttonTriangle_Click);
             // 
+            // buttonCircle
+            // 
+            this.buttonCircle.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonCircle.Image = ((System.Drawing.Image)(resources.GetObject("buttonCircle.Image")));
+            this.buttonCircle.Location = new System.Drawing.Point(58, 544);
+            this.buttonCircle.Name = "buttonCircle";
+            this.buttonCircle.Size = new System.Drawing.Size(40, 40);
+            this.buttonCircle.TabIndex = 26;
+            this.buttonCircle.UseVisualStyleBackColor = false;
+            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
+            // 
             // buttonArrow
             // 
             this.buttonArrow.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -389,6 +400,17 @@
             this.buttonTrapezoid.TabIndex = 24;
             this.buttonTrapezoid.UseVisualStyleBackColor = false;
             this.buttonTrapezoid.Click += new System.EventHandler(this.buttonTrapezoid_Click);
+            // 
+            // buttonSquare
+            // 
+            this.buttonSquare.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.buttonSquare.Image = ((System.Drawing.Image)(resources.GetObject("buttonSquare.Image")));
+            this.buttonSquare.Location = new System.Drawing.Point(12, 544);
+            this.buttonSquare.Name = "buttonSquare";
+            this.buttonSquare.Size = new System.Drawing.Size(40, 40);
+            this.buttonSquare.TabIndex = 23;
+            this.buttonSquare.UseVisualStyleBackColor = false;
+            this.buttonSquare.Click += new System.EventHandler(this.buttonSquare_Click);
             // 
             // labelPenColor
             // 
@@ -564,28 +586,6 @@
             this.buttonDefaultPen.TabIndex = 3;
             this.buttonDefaultPen.UseVisualStyleBackColor = false;
             this.buttonDefaultPen.Click += new System.EventHandler(this.buttonDefaultPen_Click);
-            // 
-            // buttonCircle
-            // 
-            this.buttonCircle.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonCircle.Image = ((System.Drawing.Image)(resources.GetObject("buttonCircle.Image")));
-            this.buttonCircle.Location = new System.Drawing.Point(58, 544);
-            this.buttonCircle.Name = "buttonCircle";
-            this.buttonCircle.Size = new System.Drawing.Size(40, 40);
-            this.buttonCircle.TabIndex = 26;
-            this.buttonCircle.UseVisualStyleBackColor = false;
-            this.buttonCircle.Click += new System.EventHandler(this.buttonCircle_Click);
-            // 
-            // buttonSquare
-            // 
-            this.buttonSquare.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.buttonSquare.Image = ((System.Drawing.Image)(resources.GetObject("buttonSquare.Image")));
-            this.buttonSquare.Location = new System.Drawing.Point(12, 544);
-            this.buttonSquare.Name = "buttonSquare";
-            this.buttonSquare.Size = new System.Drawing.Size(40, 40);
-            this.buttonSquare.TabIndex = 23;
-            this.buttonSquare.UseVisualStyleBackColor = false;
-            this.buttonSquare.Click += new System.EventHandler(this.buttonSquare_Click);
             // 
             // MainForm
             // 
