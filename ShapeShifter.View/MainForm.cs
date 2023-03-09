@@ -15,6 +15,7 @@ namespace ShapeShifter.View
     /// </summary>
     public partial class MainForm : Form
     {
+
         #region Fields
         /// <summary>
         /// Точка на экране, где последний раз был курсор
@@ -44,6 +45,7 @@ namespace ShapeShifter.View
         private bool _doDrawShapes;
         private bool _doRotateShapes;
         private bool _doResizeShapes;
+        private bool _doResizeShapesEqually;
 
         #endregion
 
@@ -343,6 +345,9 @@ namespace ShapeShifter.View
             SetShape();
             SwitchToShapePaintMode();
             InitializeShape(ShapeSelector.GetShape(ShapeType.Rectangle));
+            SelectedShape.Size = new SizeF(200, 200);
+            _doResizeShapesEqually = true;
+
         }
         private void buttonCircle_Click(object sender, EventArgs e)
         {
@@ -351,6 +356,8 @@ namespace ShapeShifter.View
 
             // Полигональный круг из максимального количества граней
             InitializeShape(ShapeSelector.GetPolygonalShape(PolygonalShape.SideCountMax));
+            SelectedShape.Size = new SizeF(200, 200);
+            _doResizeShapesEqually = true;
         }
 
         private void buttonTrapezoid_Click(object sender, EventArgs e)
@@ -414,6 +421,7 @@ namespace ShapeShifter.View
 
             _doResizeShapes = false;
             _doRotateShapes = false;
+            _doResizeShapesEqually= false;
         }
 
         private void SwitchToShapePaintMode()
@@ -519,7 +527,7 @@ namespace ShapeShifter.View
         {
             Point cursorPosition = GetCurrentCursorPosition();
 
-            //Ставит точки на холсте на месте кликов
+            ////Ставит точки на холсте на месте кликов
             //Graphics g = GetSmoothGraphicsFromCanvas();
             //g.DrawEllipse(SelectedPen, cursorPosition.X, cursorPosition.Y, 10, 10);
 
@@ -559,7 +567,14 @@ namespace ShapeShifter.View
                     //Изменение размера фигуры (Растягивание)
                     if (_doResizeShapes)
                     {
-                        SelectedShape.Size = GetCurrentSize(e);
+                        if (_doResizeShapesEqually)
+                        {
+                            SelectedShape.Size = new SizeF(GetCurrentSize(e).Width, GetCurrentSize(e).Width);
+                        }
+                        else
+                        {
+                            SelectedShape.Size = GetCurrentSize(e);
+                        }
                     }
 
                     //Изменение поворота фигуры (Вращение)
@@ -604,10 +619,13 @@ namespace ShapeShifter.View
         private SizeF GetCurrentSize(MouseEventArgs e)
         {
             //Размером фигуры становится удалённость курсора относительно её центра
-            float x = e.X  - MouseDownLocation.X + SelectedShapeSize.Width;
-            float y = e.Y - MouseDownLocation.Y + SelectedShapeSize.Height;
+            float x = e.X  - MouseDownLocation.X;
+            float y = e.Y - MouseDownLocation.Y;
 
-            return new SizeF(x, y);
+            float xRotated = x *(float)Math.Cos(SelectedShape.Angle) + y *(float)Math.Sin(SelectedShape.Angle) + SelectedShapeSize.Width;
+            float yRotated =(-1)*x*(float)Math.Sin(SelectedShape.Angle) +  y *(float)Math.Cos(SelectedShape.Angle) + SelectedShapeSize.Height;
+
+            return new SizeF(xRotated, yRotated);
         }
 
         private PointF GetCurrentShapePosition(MouseEventArgs e)
@@ -669,10 +687,11 @@ namespace ShapeShifter.View
                 {
                     e.Graphics.FillPath(brush, SelectedShape.GraphicsPath);
                     e.Graphics.DrawPath(pen, SelectedShape.GraphicsPath);
+
                 }
 
                 DrawBoundingBox(e.Graphics, SelectedShape);
-                DrawAxisAlignedBoundingBox(e.Graphics, SelectedShape);
+
             }
         }
 
