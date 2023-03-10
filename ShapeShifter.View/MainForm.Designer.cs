@@ -33,6 +33,7 @@
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.toolsPanel = new System.Windows.Forms.Panel();
+            this.textBoxNumberOfEdges = new System.Windows.Forms.TextBox();
             this.buttonResize = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonRotate = new System.Windows.Forms.Button();
@@ -74,6 +75,7 @@
             this.comboBoxPenWidth = new System.Windows.Forms.ComboBox();
             this.buttonDefaultPen = new System.Windows.Forms.Button();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -87,7 +89,7 @@
             this.panelCanvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelCanvas.Location = new System.Drawing.Point(0, 0);
             this.panelCanvas.Name = "panelCanvas";
-            this.panelCanvas.Size = new System.Drawing.Size(1163, 684);
+            this.panelCanvas.Size = new System.Drawing.Size(1163, 765);
             this.panelCanvas.TabIndex = 1;
             // 
             // Canvas
@@ -97,7 +99,7 @@
             this.Canvas.Dock = System.Windows.Forms.DockStyle.Fill;
             this.Canvas.Location = new System.Drawing.Point(0, 0);
             this.Canvas.Name = "Canvas";
-            this.Canvas.Size = new System.Drawing.Size(1163, 684);
+            this.Canvas.Size = new System.Drawing.Size(1163, 765);
             this.Canvas.TabIndex = 0;
             this.Canvas.TabStop = false;
             this.Canvas.Paint += new System.Windows.Forms.PaintEventHandler(this.Canvas_Paint);
@@ -113,12 +115,14 @@
             this.MainPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.MainPanel.Location = new System.Drawing.Point(0, 0);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1427, 684);
+            this.MainPanel.Size = new System.Drawing.Size(1427, 765);
             this.MainPanel.TabIndex = 2;
             // 
             // toolsPanel
             // 
             this.toolsPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.toolsPanel.Controls.Add(this.label2);
+            this.toolsPanel.Controls.Add(this.textBoxNumberOfEdges);
             this.toolsPanel.Controls.Add(this.buttonResize);
             this.toolsPanel.Controls.Add(this.label1);
             this.toolsPanel.Controls.Add(this.buttonRotate);
@@ -162,8 +166,16 @@
             this.toolsPanel.Dock = System.Windows.Forms.DockStyle.Right;
             this.toolsPanel.Location = new System.Drawing.Point(1163, 0);
             this.toolsPanel.Name = "toolsPanel";
-            this.toolsPanel.Size = new System.Drawing.Size(264, 684);
+            this.toolsPanel.Size = new System.Drawing.Size(264, 765);
             this.toolsPanel.TabIndex = 2;
+            // 
+            // textBoxNumberOfEdges
+            // 
+            this.textBoxNumberOfEdges.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxNumberOfEdges.Location = new System.Drawing.Point(168, 645);
+            this.textBoxNumberOfEdges.Name = "textBoxNumberOfEdges";
+            this.textBoxNumberOfEdges.Size = new System.Drawing.Size(84, 29);
+            this.textBoxNumberOfEdges.TabIndex = 47;
             // 
             // buttonResize
             // 
@@ -223,7 +235,7 @@
             // 
             this.labelCurrentColor.AutoSize = true;
             this.labelCurrentColor.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.labelCurrentColor.Location = new System.Drawing.Point(42, 131);
+            this.labelCurrentColor.Location = new System.Drawing.Point(80, 131);
             this.labelCurrentColor.Name = "labelCurrentColor";
             this.labelCurrentColor.Size = new System.Drawing.Size(110, 21);
             this.labelCurrentColor.TabIndex = 41;
@@ -436,7 +448,7 @@
             // buttonClearCanvas
             // 
             this.buttonClearCanvas.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonClearCanvas.Location = new System.Drawing.Point(11, 637);
+            this.buttonClearCanvas.Location = new System.Drawing.Point(11, 680);
             this.buttonClearCanvas.Name = "buttonClearCanvas";
             this.buttonClearCanvas.Size = new System.Drawing.Size(238, 35);
             this.buttonClearCanvas.TabIndex = 20;
@@ -587,11 +599,21 @@
             this.buttonDefaultPen.UseVisualStyleBackColor = false;
             this.buttonDefaultPen.Click += new System.EventHandler(this.buttonDefaultPen_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(16, 645);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(146, 21);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Количество граней";
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1427, 684);
+            this.ClientSize = new System.Drawing.Size(1427, 765);
             this.Controls.Add(this.MainPanel);
             this.Name = "MainForm";
             this.Text = "Рисование";
@@ -651,6 +673,8 @@
         private System.Windows.Forms.Button buttonResize;
         private System.Windows.Forms.Button buttonCircle;
         private System.Windows.Forms.Button buttonSquare;
+        public System.Windows.Forms.TextBox textBoxNumberOfEdges;
+        private System.Windows.Forms.Label label2;
     }
 }
 

@@ -39,6 +39,7 @@ namespace ShapeShifter.View
         private Pen _selectedPen;
         private int _selectedPenWidth;
         private SizeF _selectedShapeCurrentSize;
+        private int numberOfEdges=3;
 
         //Режимы рисования
         private bool _doMouseDraw;
@@ -401,7 +402,21 @@ namespace ShapeShifter.View
         {
             SetShape();
             SwitchToShapePaintMode();
-            InitializeShape(ShapeSelector.GetPolygonalShape());
+            try
+            {
+                numberOfEdges = int.Parse(textBoxNumberOfEdges.Text);
+                if (3 > numberOfEdges || numberOfEdges > 64)
+                {
+                    MessageBox.Show("Неверно введено количество граней. Граней не может быть меньше 3 или больше 64", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    throw new Exception();
+                }
+                InitializeShape(ShapeSelector.GetPolygonalShape(numberOfEdges));
+                SelectedShape.Size = new SizeF(200, 200);
+            }
+            catch
+            {
+                MessageBox.Show("Неверно введено количество граней","Ошибка",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
