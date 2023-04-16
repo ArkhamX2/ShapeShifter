@@ -33,6 +33,7 @@
             this.Canvas = new System.Windows.Forms.PictureBox();
             this.MainPanel = new System.Windows.Forms.Panel();
             this.toolsPanel = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.textBoxNumberOfEdges = new System.Windows.Forms.TextBox();
             this.buttonResize = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.comboBoxPenWidth = new System.Windows.Forms.ComboBox();
             this.buttonDefaultPen = new System.Windows.Forms.Button();
             this.colorPicker = new System.Windows.Forms.ColorDialog();
-            this.label2 = new System.Windows.Forms.Label();
             this.panelCanvas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Canvas)).BeginInit();
             this.MainPanel.SuspendLayout();
@@ -168,6 +168,16 @@
             this.toolsPanel.Name = "toolsPanel";
             this.toolsPanel.Size = new System.Drawing.Size(264, 765);
             this.toolsPanel.TabIndex = 2;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.Location = new System.Drawing.Point(16, 645);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(146, 21);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Количество граней";
             // 
             // textBoxNumberOfEdges
             // 
@@ -599,22 +609,13 @@
             this.buttonDefaultPen.UseVisualStyleBackColor = false;
             this.buttonDefaultPen.Click += new System.EventHandler(this.buttonDefaultPen_Click);
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(16, 645);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 21);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "Количество граней";
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1427, 765);
             this.Controls.Add(this.MainPanel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "MainForm";
             this.Text = "Рисование";
             this.panelCanvas.ResumeLayout(false);
